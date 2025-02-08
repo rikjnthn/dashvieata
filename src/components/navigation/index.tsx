@@ -10,7 +10,7 @@ const Navigation = () => {
   return (
     <div className="border-grey-200-50 flex h-full min-w-80 flex-col gap-5 border-r p-9">
       <div>
-        <img src={logo} alt="DashVieata" />
+        <img title="DashVieata" src={logo} alt="DashVieata" />
       </div>
 
       <nav className="h-full py-5">
