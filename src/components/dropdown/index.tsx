@@ -31,14 +31,15 @@ const Dropdown = ({ defaultValue, options }: DropdownType) => {
             { hidden: !isDropdownOpen },
           )}
         >
-          {options.map((option) => (
-            <div
-              key={option}
+          {options.map((optionValue) => (
+            <option
+              key={optionValue}
               className="border-grey-200-50 w-full border-b p-4"
               onClick={() => setIsDropdownOpen(false)}
+              value={optionValue}
             >
-              {option}
-            </div>
+              {optionValue}
+            </option>
           ))}
         </div>
       </div>
