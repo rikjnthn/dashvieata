@@ -21,7 +21,7 @@ const Dropdown = ({ defaultValue, options }: DropdownType) => {
         >
           <div className="w-full">{defaultValue}</div>
           <div>
-            <ArrowIcon />
+            <ArrowIcon title="Open" />
           </div>
         </div>
 
