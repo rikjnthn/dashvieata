@@ -6,12 +6,28 @@ import ArrowIcon from ".";
 
 describe("ArrowIcon", () => {
   test("should render correctly", () => {
-    render(<ArrowIcon title="Arrow" />);
+    const { rerender } = render(<ArrowIcon title="Arrow" size="md" />);
 
-    const arrowIcon = screen.getByTitle("Arrow");
-    expect(arrowIcon).toBeInTheDocument();
+    const arrowIconMd = screen.getByTitle("Arrow");
+    expect(arrowIconMd).toBeInTheDocument();
 
-    expect(arrowIcon.querySelector("svg")).toHaveAttribute("width", "40");
-    expect(arrowIcon.querySelector("svg")).toHaveAttribute("height", "40");
+    expect(arrowIconMd.querySelector("svg")).toHaveAttribute("width", "40");
+    expect(arrowIconMd.querySelector("svg")).toHaveAttribute("height", "40");
+    expect(arrowIconMd.querySelector("path")).toHaveAttribute(
+      "stroke-width",
+      "2",
+    );
+
+    rerender(<ArrowIcon title="Arrow" size="sm" />);
+
+    const arrowIconSm = screen.getByTitle("Arrow");
+    expect(arrowIconSm).toBeInTheDocument();
+
+    expect(arrowIconSm.querySelector("svg")).toHaveAttribute("width", "25");
+    expect(arrowIconSm.querySelector("svg")).toHaveAttribute("height", "25");
+    expect(arrowIconMd.querySelector("path")).toHaveAttribute(
+      "stroke-width",
+      "3",
+    );
   });
 });
