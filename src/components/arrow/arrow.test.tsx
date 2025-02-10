@@ -11,7 +11,7 @@ describe("ArrowIcon", () => {
     const arrowIcon = screen.getByTitle("Arrow");
     expect(arrowIcon).toBeInTheDocument();
 
-    expect(arrowIcon.querySelector("svg")).toHaveAttribute("width", "50");
-    expect(arrowIcon.querySelector("svg")).toHaveAttribute("height", "50");
+    expect(arrowIcon.querySelector("svg")).toHaveAttribute("width", "40");
+    expect(arrowIcon.querySelector("svg")).toHaveAttribute("height", "40");
   });
 });

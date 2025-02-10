@@ -11,7 +11,7 @@ describe("SettingIcon", () => {
     const settingIcon = screen.getByTitle("Settings");
     expect(settingIcon).toBeInTheDocument();
 
-    expect(settingIcon.querySelector("svg")).toHaveAttribute("width", "50");
-    expect(settingIcon.querySelector("svg")).toHaveAttribute("height", "50");
+    expect(settingIcon.querySelector("svg")).toHaveAttribute("width", "40");
+    expect(settingIcon.querySelector("svg")).toHaveAttribute("height", "40");
   });
 });

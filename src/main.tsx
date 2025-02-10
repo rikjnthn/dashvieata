@@ -4,15 +4,20 @@ import { BrowserRouter, Route, Routes } from "react-router";
 
 import "./style/global.css";
 
-import Layout from "./root-layout";
-import Settings from "./pages/settings";
+import RootLayout from "./root-layout";
+import SettingsPage from "./pages/settings";
+import ProductsPage from "./pages/products";
+import WithHeaderLayout from "./layout/with-header";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="settings" element={<Settings />} />
+        <Route path="/" element={<RootLayout />}>
+          <Route path="/" element={<WithHeaderLayout />}>
+            <Route path="products" element={<ProductsPage />} />
+          </Route>
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -2,14 +2,14 @@ const ArrowIcon = ({ title }: ArrowIconType) => {
   return (
     <div title={title}>
       <svg
-        width="50"
-        height="50"
-        viewBox="0 0 50 50"
+        width="40"
+        height="40"
+        viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M12.5 19L23.5858 30.0858C24.3668 30.8668 25.6332 30.8668 26.4142 30.0858L37.5 19"
+          d="M10 15.2L18.5858 23.7858C19.3668 24.5668 20.6332 24.5668 21.4142 23.7858L30 15.2"
           stroke="black"
           strokeWidth="2"
           strokeLinecap="round"
