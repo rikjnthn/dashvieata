@@ -11,7 +11,7 @@ describe("ChatIcon", () => {
     const chatIcon = screen.getByTitle("Messages");
     expect(chatIcon).toBeInTheDocument();
 
-    expect(chatIcon.querySelector("svg")).toHaveAttribute("width", "50");
-    expect(chatIcon.querySelector("svg")).toHaveAttribute("height", "50");
+    expect(chatIcon.querySelector("svg")).toHaveAttribute("width", "40");
+    expect(chatIcon.querySelector("svg")).toHaveAttribute("height", "40");
   });
 });
