@@ -32,11 +32,6 @@ body,
   min-height: 100%;
 }
 
-.nav-icon {
-  width: 50px;
-  aspect-ratio: 1;
-}
-
 .nav-transition-fade {
   transition-property: background-color, color, stroke;
   transition-duration: 150ms;

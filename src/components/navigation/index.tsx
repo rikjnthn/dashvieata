@@ -8,12 +8,12 @@ import ChatIcon from "../chat-icon";
 
 const Navigation = () => {
   return (
-    <div className="border-grey-200-50 flex h-full min-w-80 flex-col gap-5 border-r p-9">
+    <div className="border-grey-200-50 flex h-full min-w-80 flex-col gap-2.5 border-r p-9">
       <div>
         <img title="DashVieata" src={logo} alt="DashVieata" />
       </div>
 
-      <nav className="h-full py-5">
+      <nav className="h-full py-2.5">
         <NavOption to={"/"} label="Dashboard" icon={<DashboardIcon />} />
         <NavOption to={"/products"} label="Products" icon={<ProductIcon />} />
         <NavOption
@@ -25,7 +25,7 @@ const Navigation = () => {
         <NavOption to={"/settings"} label="Setting" icon={<SettingIcon />} />
       </nav>
 
-      <div className="text-grey-400 text-sm">
+      <div className="text-grey-400 text-xs">
         &#169; 2025 all right reserved
       </div>
     </div>
