@@ -11,10 +11,10 @@ describe("TransactionIcon", () => {
     const transactionIcon = screen.getByTitle("Transactions");
     expect(transactionIcon).toBeInTheDocument();
 
-    expect(transactionIcon.querySelector("svg")).toHaveAttribute("width", "50");
+    expect(transactionIcon.querySelector("svg")).toHaveAttribute("width", "40");
     expect(transactionIcon.querySelector("svg")).toHaveAttribute(
       "height",
-      "50",
+      "40",
     );
   });
 });
