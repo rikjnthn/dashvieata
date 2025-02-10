@@ -7,7 +7,7 @@ const NavOption = ({ icon, label, to }: NavOptionType) => {
     <NavLink
       className={({ isActive }) =>
         clsx(
-          "nav-transition-fade flex w-full items-center gap-2.5 rounded-md py-2.5 pr-2.5 text-xl font-medium hover:bg-blue-200 hover:stroke-white hover:text-white active:bg-blue-800",
+          "nav-transition-fade flex w-full items-center gap-2.5 rounded-md py-2.5 pr-2.5 font-medium hover:bg-blue-200 hover:stroke-white hover:text-white active:bg-blue-800",
           isActive
             ? "stroke-black text-black"
             : "text-grey-300 stroke-grey-300",

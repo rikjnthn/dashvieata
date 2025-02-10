@@ -19,7 +19,7 @@ const Dropdown = ({ defaultValue, options }: DropdownType) => {
             e.stopPropagation();
           }}
         >
-          <div className="w-full">{defaultValue}</div>
+          <div className="w-full text-sm">{defaultValue}</div>
           <div>
             <ArrowIcon title="Open" />
           </div>
@@ -34,7 +34,7 @@ const Dropdown = ({ defaultValue, options }: DropdownType) => {
           {options.map((optionValue) => (
             <option
               key={optionValue}
-              className="border-grey-200-50 w-full border-b p-4"
+              className="border-grey-200-50 w-full border-b p-4 text-sm"
               onClick={() => setIsDropdownOpen(false)}
               value={optionValue}
             >
