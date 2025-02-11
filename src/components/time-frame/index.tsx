@@ -9,7 +9,7 @@ const TimeFrame = () => {
 
   return (
     <>
-      <div className="relative w-50">
+      <div className="relative w-50 select-none">
         <div
           className={clsx(
             "border-grey-200-50 flex h-fit w-full items-center rounded-md border px-4 text-sm",
@@ -46,7 +46,7 @@ const TimeFrame = () => {
       </div>
 
       <div
-        className={clsx("absolute top-0 left-0 h-full w-full", {
+        className={clsx("absolute top-0 left-0 h-full w-full select-none", {
           hidden: !isDropdownOpen,
         })}
         onClick={() => setIsDropdownOpen(false)}
