@@ -31,11 +31,11 @@ function SliderIcon() {
   return <div>Slider Icon</div>;
 }
 
-function BellIcon() {
-  return <div>Bell Icon</div>;
+function NotificationOverlay() {
+  return <div>Notification Overlay</div>;
 }
 
-vi.mock("../bell-icon", () => ({ default: BellIcon }));
+vi.mock("../notification-overlay", () => ({ default: NotificationOverlay }));
 vi.mock("../plus-icon", () => ({ default: PlusIcon }));
 vi.mock("../back-icon", () => ({ default: BackIcon }));
 vi.mock("../slider-icon", () => ({ default: SliderIcon }));
@@ -67,8 +67,8 @@ describe("HeaderNav", () => {
     const sldiderIcon = screen.queryByText("Slider Icon");
     expect(sldiderIcon).not.toBeInTheDocument();
 
-    const bellIcon = screen.queryByText("Bell Icon");
-    expect(bellIcon).toBeInTheDocument();
+    const notificationOverlay = screen.queryByText("Notification Overlay");
+    expect(notificationOverlay).toBeInTheDocument();
   });
 
   test("should render correctly when navigate to '/products' path", () => {
@@ -99,8 +99,8 @@ describe("HeaderNav", () => {
     const sldiderIcon = screen.queryByText("Slider Icon");
     expect(sldiderIcon).not.toBeInTheDocument();
 
-    const bellIcon = screen.queryByText("Bell Icon");
-    expect(bellIcon).toBeInTheDocument();
+    const notificationOverlay = screen.queryByText("Notification Overlay");
+    expect(notificationOverlay).toBeInTheDocument();
   });
 
   test("should render correctly when navigate to '/transactions' path", () => {
@@ -131,8 +131,8 @@ describe("HeaderNav", () => {
     const sldiderIcon = screen.queryByText("Slider Icon");
     expect(sldiderIcon).toBeInTheDocument();
 
-    const bellIcon = screen.queryByText("Bell Icon");
-    expect(bellIcon).toBeInTheDocument();
+    const notificationOverlay = screen.queryByText("Notification Overlay");
+    expect(notificationOverlay).toBeInTheDocument();
   });
 
   test("should render correctly when navigate to '/messages' path", () => {
@@ -163,8 +163,8 @@ describe("HeaderNav", () => {
     const sldiderIcon = screen.queryByText("Slider Icon");
     expect(sldiderIcon).not.toBeInTheDocument();
 
-    const bellIcon = screen.queryByText("Bell Icon");
-    expect(bellIcon).toBeInTheDocument();
+    const notificationOverlay = screen.queryByText("Notification Overlay");
+    expect(notificationOverlay).toBeInTheDocument();
   });
 
   test("should render correctly when navigate to '/settings' path", () => {
@@ -195,8 +195,8 @@ describe("HeaderNav", () => {
     const sldiderIcon = screen.queryByText("Slider Icon");
     expect(sldiderIcon).not.toBeInTheDocument();
 
-    const bellIcon = screen.queryByText("Bell Icon");
-    expect(bellIcon).not.toBeInTheDocument();
+    const notificationOverlay = screen.queryByText("Notification Overlay");
+    expect(notificationOverlay).not.toBeInTheDocument();
   });
 
   test("should render correctly when navigate to '/add-product' path", () => {
@@ -227,8 +227,8 @@ describe("HeaderNav", () => {
     const sldiderIcon = screen.queryByText("Slider Icon");
     expect(sldiderIcon).not.toBeInTheDocument();
 
-    const bellIcon = screen.queryByText("Bell Icon");
-    expect(bellIcon).toBeInTheDocument();
+    const notificationOverlay = screen.queryByText("Notification Overlay");
+    expect(notificationOverlay).toBeInTheDocument();
   });
 
   test("should render correctly when navigate to '/product/' path", () => {
@@ -259,7 +259,7 @@ describe("HeaderNav", () => {
     const sldiderIcon = screen.queryByText("Slider Icon");
     expect(sldiderIcon).not.toBeInTheDocument();
 
-    const bellIcon = screen.queryByText("Bell Icon");
-    expect(bellIcon).toBeInTheDocument();
+    const notificationOverlay = screen.queryByText("Notification Overlay");
+    expect(notificationOverlay).toBeInTheDocument();
   });
 });

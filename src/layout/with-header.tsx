@@ -1,18 +1,10 @@
-import { Outlet, useLocation } from "react-router";
-import clsx from "clsx";
+import { Outlet } from "react-router";
 
 import HeaderNav from "../components/header-nav";
 
 function WithHeader() {
-  const pathname = useLocation().pathname;
-
   return (
-    <div
-      className={clsx(
-        "w-full min-w-0 px-4",
-        pathname !== "/" ? "py-12" : "py-7",
-      )}
-    >
+    <div className="w-full min-w-0 px-4 py-12">
       <HeaderNav />
       <Outlet />
     </div>

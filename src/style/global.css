@@ -39,6 +39,12 @@ body,
   transition-timing-function: ease-out;
 }
 
+.notification-transition {
+  transition-property: translate;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+
 .products-page {
   display: flex;
   width: 100%;
