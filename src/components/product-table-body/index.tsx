@@ -5,8 +5,8 @@ const ProductTableBody = () => {
     <tbody className="product-table-body">
       <ProductTableRow
         number="1"
-        imageSrc=""
-        imageAlt=""
+        imageSrc="/nice-t-shirt.jpg"
+        imageAlt="Nice T-shirt"
         price="20.00"
         productId="product id 1"
         productName="Nice T-shirt"
