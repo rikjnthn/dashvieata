@@ -15,3 +15,9 @@ export const FONTSIZES = [
 ];
 
 export const COLORSCHEME = ["Light", "Dark"];
+
+export const TIMEFRAMEOPTIONS = [
+  "Last 30 days",
+  "Last 60 days",
+  "Last 90 days",
+];

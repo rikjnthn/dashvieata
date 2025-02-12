@@ -4,7 +4,7 @@ import Navigation from "./components/navigation";
 
 function Layout() {
   return (
-    <div className="flex h-full">
+    <div className="flex h-full w-full">
       <Navigation />
       <Outlet />
     </div>

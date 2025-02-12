@@ -1,14 +1,15 @@
 import { useState } from "react";
 import clsx from "clsx";
 
+import { TIMEFRAMEOPTIONS } from "../../constant/setting";
 import ArrowIcon from "../arrow";
 
-const Dropdown = ({ defaultValue, options }: DropdownType) => {
+const TimeFrame = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <>
-      <div className="relative">
+      <div className="relative w-50 select-none">
         <div
           className={clsx(
             "border-grey-200-50 flex h-fit w-full items-center rounded-md border px-4 text-sm",
@@ -19,9 +20,9 @@ const Dropdown = ({ defaultValue, options }: DropdownType) => {
             e.stopPropagation();
           }}
         >
-          <div className="w-full">{defaultValue}</div>
+          <div className="w-full py-2.5">Last 30 days</div>
           <div>
-            <ArrowIcon title="Open" size="md" />
+            <ArrowIcon title="Open" size="sm" />
           </div>
         </div>
 
@@ -31,7 +32,7 @@ const Dropdown = ({ defaultValue, options }: DropdownType) => {
             { hidden: !isDropdownOpen },
           )}
         >
-          {options.map((optionValue) => (
+          {TIMEFRAMEOPTIONS.map((optionValue) => (
             <option
               key={optionValue}
               className="border-grey-200-50 w-full border-b p-4 text-sm"
@@ -45,7 +46,7 @@ const Dropdown = ({ defaultValue, options }: DropdownType) => {
       </div>
 
       <div
-        className={clsx("absolute top-0 left-0 h-full w-full", {
+        className={clsx("absolute top-0 left-0 h-full w-full select-none", {
           hidden: !isDropdownOpen,
         })}
         onClick={() => setIsDropdownOpen(false)}
@@ -54,9 +55,4 @@ const Dropdown = ({ defaultValue, options }: DropdownType) => {
   );
 };
 
-export default Dropdown;
-
-interface DropdownType {
-  defaultValue: string;
-  options: string[];
-}
+export default TimeFrame;
