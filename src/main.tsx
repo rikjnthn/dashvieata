@@ -6,8 +6,9 @@ import "./style/global.css";
 
 import RootLayout from "./root-layout";
 import SettingsPage from "./pages/settings";
-import ProductsPage from "./pages/products";
+import Products from "./pages/products";
 import WithHeaderLayout from "./layout/with-header";
+import Product from "./pages/product";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -15,7 +16,9 @@ createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route path="/" element={<WithHeaderLayout />}>
-            <Route path="products" element={<ProductsPage />} />
+            <Route path="products" element={<Products />} />
+            <Route path="add-product" element={<Products />} />
+            <Route path="product/:productId" element={<Product />} />
           </Route>
           <Route path="settings" element={<SettingsPage />} />
         </Route>

@@ -49,7 +49,7 @@ body,
   display: flex;
   width: 100%;
   height: 100%;
-  padding-block: 3rem;
+  padding-block: 0.625rem;
 }
 
 .product-table-head {

@@ -1,6 +1,20 @@
+import { useLocation, useNavigate } from "react-router";
+
 const BackIcon = () => {
+  const navigate = useNavigate();
+  const pathname = useLocation().pathname;
+
+  const pathnameSplit = pathname.split("/");
+
   return (
-    <div title="Back">
+    <div
+      onClick={() => {
+        if (pathname === "/add-product" || pathnameSplit[1] === "product")
+          navigate("/products");
+        else if (pathnameSplit[1] === "transaction") navigate("/transactions");
+      }}
+      title="Back"
+    >
       <svg
         width="40"
         height="40"
