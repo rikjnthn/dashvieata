@@ -13,7 +13,7 @@ const ProductTableRow = ({
 
   return (
     <tr
-      onClick={() => navigate("/products/" + productId)}
+      onClick={() => navigate("/product/" + productId)}
       className="product-table-body-row cursor-pointer"
     >
       <td>{number}</td>
