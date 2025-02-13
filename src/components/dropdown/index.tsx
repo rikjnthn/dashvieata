@@ -4,7 +4,7 @@ import clsx from "clsx";
 import ArrowIcon from "../arrow";
 
 const Dropdown = ({ defaultValue, options }: DropdownType) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   return (
     <>

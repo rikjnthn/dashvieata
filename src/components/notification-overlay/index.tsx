@@ -20,7 +20,7 @@ const NotificationOverlay = () => {
 
         <div
           className={clsx(
-            "border-grey-200-50 absolute right-0 w-100 rounded-md border bg-white",
+            "border-grey-200-50 absolute right-0 z-10 w-100 rounded-md border bg-white",
             { hidden: !isOpenOverlay },
           )}
         >
