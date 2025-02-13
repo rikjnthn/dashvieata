@@ -9,6 +9,7 @@ import SettingsPage from "./pages/settings";
 import Products from "./pages/products";
 import WithHeaderLayout from "./layout/with-header";
 import Product from "./pages/product";
+import AddProduct from "./pages/add-product";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -17,8 +18,8 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/" element={<RootLayout />}>
           <Route path="/" element={<WithHeaderLayout />}>
             <Route path="products" element={<Products />} />
-            <Route path="add-product" element={<Products />} />
             <Route path="product/:productId" element={<Product />} />
+            <Route path="add-product" element={<AddProduct />} />
           </Route>
           <Route path="settings" element={<SettingsPage />} />
         </Route>

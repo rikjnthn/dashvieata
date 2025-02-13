@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router";
+
 const PlusIcon = () => {
+  const navigate = useNavigate();
+
   return (
-    <div title="Add product">
+    <div onClick={() => navigate("/add-product")} title="Add product">
       <svg
         width="40"
         height="40"
