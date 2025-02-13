@@ -49,7 +49,7 @@ body,
   display: flex;
   width: 100%;
   height: 100%;
-  padding-block: 3rem;
+  padding-block: 0.625rem;
 }
 
 .product-table-head {
@@ -98,4 +98,32 @@ body,
 .product-table-body-row > td:first-child {
   width: 6.25rem;
   flex-shrink: 0;
+}
+
+.product-image-input {
+  display: grid;
+  grid-template-areas: "stack";
+  aspect-ratio: 1;
+  height: fit-content;
+  width: 100%;
+  min-height: 0;
+  max-height: 25rem;
+  max-width: 25rem;
+  overflow: hidden;
+}
+
+.product-image-input > label {
+  grid-area: stack;
+  transition-property: background-color;
+  transition-timing-function: ease-out;
+  transition-duration: 200ms;
+  z-index: 10;
+}
+
+.product-image-input > img {
+  grid-area: stack;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
 }

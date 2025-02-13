@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 const ProductTableRow = ({
   imageSrc,
   number,
@@ -7,12 +9,17 @@ const ProductTableRow = ({
   productName,
   stock,
 }: ProductTableRowType) => {
+  const navigate = useNavigate();
+
   return (
-    <tr className="product-table-body-row">
+    <tr
+      onClick={() => navigate("/product/" + productId)}
+      className="product-table-body-row cursor-pointer"
+    >
       <td>{number}</td>
       <td className="py-4">
         <img
-          className="h-18.75 w-18.75 rounded-md"
+          className="h-18.75 w-18.75 rounded-md object-cover"
           src={imageSrc}
           alt={imageAlt}
         />

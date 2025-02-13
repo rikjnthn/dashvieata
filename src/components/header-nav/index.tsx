@@ -11,7 +11,7 @@ const HeaderNav = () => {
   const pathname = useLocation().pathname;
 
   return (
-    <div className="flex w-full justify-between">
+    <div className="flex h-17.5 w-full justify-between px-2.5">
       <div className="flex items-center">
         {(pathname === "/add-product" ||
           pathname.split("/")[1] === "product") && <BackIcon />}
