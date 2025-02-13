@@ -5,7 +5,7 @@ import { TIMEFRAMEOPTIONS } from "../../constant/setting";
 import ArrowIcon from "../arrow";
 
 const TimeFrame = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   return (
     <>

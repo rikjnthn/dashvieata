@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-green-500: oklch(44.21% 0.1504 142.5);
+  --color-green-500: oklch(59.17% 0.201353 142.4953);
   --color-green-300: oklch(73.23% 0.2491 142.5);
   --color-red-700: oklch(42.89% 0.1759 29.23);
   --color-red-500: oklch(57.89% 0.2375 29.23);
@@ -23,6 +23,7 @@
   --color-dark-cyan-900: oklch(48.43% 0.0873 218.72);
   --color-dark-cyan-800: oklch(51.37% 0.0878 206.24);
   --color-dark-cyan-600: oklch(51.32% 0.0859 209.86);
+  --color-dark-green: oklch(51.98% 0.176858 142.4953);
 }
 
 html,
@@ -52,17 +53,20 @@ body,
   padding-block: 0.625rem;
 }
 
-.product-table-head {
+.product-table-head,
+.transaction-table-head {
   height: 2.75rem;
   padding: 0.625rem;
 }
 
-.product-table-head > tr {
+.product-table-head > tr,
+.transaction-table-head > tr {
   display: flex;
   gap: 0.625rem;
 }
 
-.product-table-head > tr > th {
+.product-table-head > tr > th,
+.transaction-table-head > tr > th {
   display: flex;
   align-items: center;
   min-width: 6.25rem;
@@ -70,31 +74,48 @@ body,
   font-weight: 500;
 }
 
-.product-table-head > tr > th:first-child {
+.transaction-table-head > tr > th {
+  min-width: 7rem;
+}
+
+.product-table-head > tr > th:first-child,
+.transaction-table-head > tr > th:first-child {
   width: 6.25rem;
   flex-shrink: 0;
 }
 
-.product-table-body {
+.product-table-body,
+.transaction-table-body {
   display: flex;
   flex-direction: column;
   padding: 0.625rem;
   padding-inline: 0.625rem;
 }
 
-.product-table-body-row {
+.product-table-body-row,
+.transaction-table-body-row {
   display: flex;
   gap: 0.625rem;
   font-size: 0.875rem;
 }
 
-.product-table-body-row > td {
+.product-table-body-row > td,
+.transaction-table-body-row > td {
   display: flex;
   align-items: center;
   min-width: 6.25rem;
   width: 100%;
 }
 
+.transaction-table-body-row > td {
+  min-width: 7rem;
+}
+
+.transaction-table-body-row > td {
+  padding-block: 1.625rem;
+}
+
+.product-table-body-row > td:first-child,
 .product-table-body-row > td:first-child {
   width: 6.25rem;
   flex-shrink: 0;
@@ -126,4 +147,28 @@ body,
   height: 100%;
   min-height: 0;
   object-fit: cover;
+}
+
+.switch {
+  width: 2.5rem;
+  height: 1.25rem;
+  border-radius: 0.625rem;
+  position: relative;
+}
+
+.switch::before {
+  content: "";
+  position: absolute;
+  width: 1.125rem;
+  height: 1.125rem;
+  background-color: var(--color-blue-800);
+  border-radius: 100%;
+}
+
+.switch-true::before {
+  right: 0;
+}
+
+.switch-false::before {
+  left: 0;
 }

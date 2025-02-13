@@ -50,8 +50,8 @@ function getDefaultColorScheme(): string {
 }
 
 export function SettingProvider({ children }: { children: React.ReactNode }) {
-  const [fontSize, setFontSize] = useState(getDefaultFontSize);
-  const [colorScheme, setColorScheme] = useState(getDefaultColorScheme);
+  const [fontSize, setFontSize] = useState<string>(getDefaultFontSize);
+  const [colorScheme, setColorScheme] = useState<string>(getDefaultColorScheme);
 
   return (
     <SettingDispatchContext value={{ setColorScheme, setFontSize }}>

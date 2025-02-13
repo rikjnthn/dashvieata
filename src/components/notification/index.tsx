@@ -5,7 +5,7 @@ import ChatIcon from "../chat-icon";
 import CloseIcon from "../close-icon";
 
 const Notification = () => {
-  const [isRemoved, setIsRemoved] = useState(false);
+  const [isRemoved, setIsRemoved] = useState<boolean>(false);
 
   const notificationRef = useRef<HTMLDivElement>(null);
 
