@@ -11,6 +11,7 @@ import WithHeaderLayout from "./layout/with-header";
 import Product from "./pages/product";
 import AddProduct from "./pages/add-product";
 import Dashboard from "./pages/dashboard";
+import TransactionsPage from "./pages/transactions-page";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="products" element={<Products />} />
             <Route path="product/:productId" element={<Product />} />
             <Route path="add-product" element={<AddProduct />} />
+            <Route path="transactions" element={<TransactionsPage />} />
           </Route>
           <Route path="settings" element={<SettingsPage />} />
         </Route>
