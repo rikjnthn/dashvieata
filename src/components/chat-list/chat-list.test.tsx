@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
@@ -11,6 +11,10 @@ function Chat() {
 vi.mock("../chat", () => ({ default: Chat }));
 
 describe("ChatList", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     render(<ChatList />);
 

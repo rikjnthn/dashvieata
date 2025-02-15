@@ -8,7 +8,7 @@ const ProductTableRow = ({
   productId,
   productName,
   stock,
-}: ProductTableRowType) => {
+}: ProductTableRowPropsType) => {
   const navigate = useNavigate();
 
   return (
@@ -34,7 +34,7 @@ const ProductTableRow = ({
 
 export default ProductTableRow;
 
-interface ProductTableRowType {
+interface ProductTableRowPropsType {
   number: string;
   imageSrc: string;
   imageAlt: string;

@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
@@ -13,6 +13,10 @@ vi.mock("../dropdown", () => ({
 }));
 
 describe("FontSizeSetting", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     render(<FontSizeSetting />);
 

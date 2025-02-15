@@ -2,7 +2,7 @@ import Chat from "../chat";
 
 const ChatList = () => {
   return (
-    <div>
+    <div className="cursor-pointer">
       <Chat
         profilePictureSrc="/user1.jpg"
         name="Amanda"

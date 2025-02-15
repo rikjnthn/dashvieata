@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-const ProductInput = ({ label }: ProductInputType) => {
+const ProductInput = ({ label }: ProductInputPropsType) => {
   const id = useId();
 
   return (
@@ -20,6 +20,6 @@ const ProductInput = ({ label }: ProductInputType) => {
 
 export default ProductInput;
 
-interface ProductInputType {
+interface ProductInputPropsType {
   label: string;
 }

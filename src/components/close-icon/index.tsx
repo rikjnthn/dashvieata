@@ -1,4 +1,4 @@
-const CloseIcon = ({ title }: CloseIconType) => {
+const CloseIcon = ({ title }: CloseIconPropsType) => {
   return (
     <div title={title}>
       <svg
@@ -20,6 +20,6 @@ const CloseIcon = ({ title }: CloseIconType) => {
 
 export default CloseIcon;
 
-interface CloseIconType {
+interface CloseIconPropsType {
   title: string;
 }

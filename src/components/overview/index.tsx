@@ -5,7 +5,7 @@ const Overview = ({
   timeFrame,
   value,
   growthPercentage,
-}: OverviewType) => {
+}: OverviewPropsType) => {
   return (
     <div className="border-grey-200-50 w-full max-w-100 rounded-md border p-4">
       <div className="text-lg font-medium">{label}</div>
@@ -27,7 +27,7 @@ const Overview = ({
 
 export default Overview;
 
-interface OverviewType {
+interface OverviewPropsType {
   label: string;
   value: string;
   timeFrame: "Last 30 days" | "Last 60 days" | "Last 90 days";

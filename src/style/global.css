@@ -172,3 +172,30 @@ body,
 .switch-false::before {
   left: 0;
 }
+
+.message {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.message > div {
+  display: flex;
+  height: fit-content;
+  width: fit-content;
+  max-width: calc(100% * 2 / 3);
+  max-height: 30rem;
+  background-color: var(--color-blue-900);
+  padding-inline: 1rem;
+  padding-block: 0.625rem;
+  color: #fff;
+  font-size: 0.875rem;
+}
+
+.message > div > img {
+  height: 15rem;
+}
+
+.flipped {
+  transform: scale(-1, 1);
+}

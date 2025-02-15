@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -22,6 +22,10 @@ vi.mock("../close-icon", () => ({ default: CloseIcon }));
 vi.mock("../notification", () => ({ default: Notification }));
 
 describe("NotificationOverlay", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     render(<NotificationOverlay />);
 

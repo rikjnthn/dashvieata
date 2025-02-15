@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import "@testing-library/jest-dom";
@@ -6,11 +6,23 @@ import "@testing-library/jest-dom";
 import Products from "../src/pages/products";
 
 function ProductTableHead() {
-  return <div>Product Table Head</div>;
+  return (
+    <thead>
+      <tr>
+        <th>Product Table Head</th>
+      </tr>
+    </thead>
+  );
 }
 
 function ProductTableBody() {
-  return <div>Product Table Body</div>;
+  return (
+    <tbody>
+      <tr>
+        <td>Product Table Body</td>
+      </tr>
+    </tbody>
+  );
 }
 
 vi.mock("../src/components/product-table-head", () => ({
@@ -21,6 +33,10 @@ vi.mock("../src/components/product-table-body", () => ({
 }));
 
 describe("Products", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     render(<Products />);
 

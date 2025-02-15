@@ -11,6 +11,8 @@ import WithHeaderLayout from "./layout/with-header";
 import Product from "./pages/product";
 import AddProduct from "./pages/add-product";
 import Dashboard from "./pages/dashboard";
+import MessagesPage from "./pages/messages";
+import ChatRoom from "./components/chat-room";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -22,6 +24,9 @@ createRoot(document.getElementById("root")!).render(
             <Route path="products" element={<Products />} />
             <Route path="product/:productId" element={<Product />} />
             <Route path="add-product" element={<AddProduct />} />
+            <Route path="messages" element={<MessagesPage />}>
+              <Route path=":id" element={<ChatRoom />} />
+            </Route>
           </Route>
           <Route path="settings" element={<SettingsPage />} />
         </Route>

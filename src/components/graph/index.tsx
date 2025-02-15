@@ -24,7 +24,6 @@ const Graph = () => {
           },
         ],
       },
-      options: {},
     });
 
     return () => chart.destroy();

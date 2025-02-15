@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
@@ -11,6 +11,10 @@ function SearchIcon() {
 vi.mock("../search-icon", () => ({ default: SearchIcon }));
 
 describe("SearchBar", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     render(<SearchBar />);
 

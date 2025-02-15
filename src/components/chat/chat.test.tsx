@@ -33,6 +33,10 @@ describe("Chat", () => {
         path: "/",
         element: <Chat message="message" name="name" profilePictureSrc="/" />,
       },
+      {
+        path: "/messages/name",
+        element: <div></div>,
+      },
     ]);
 
     render(<RouterProvider router={router} />);

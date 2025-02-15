@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
@@ -9,6 +9,10 @@ window.URL.createObjectURL = vi.fn();
 window.URL.revokeObjectURL = vi.fn();
 
 describe("ProductImageInput", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     const { container } = render(<ProductImageInput />);
 

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-const ArrowIcon = ({ title, size }: ArrowIconType) => {
+const ArrowIcon = ({ title, size }: ArrowIconPropsType) => {
   return (
     <div title={title}>
       <svg
@@ -23,7 +23,7 @@ const ArrowIcon = ({ title, size }: ArrowIconType) => {
 
 export default ArrowIcon;
 
-interface ArrowIconType {
+interface ArrowIconPropsType {
   title?: string;
   size: "sm" | "md";
 }

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import "@testing-library/jest-dom";
 
 import MessageOverview from ".";
@@ -18,6 +18,10 @@ vi.mock("../go-to-icon", () => ({ default: GotoIcon }));
 vi.mock("../chat-list", () => ({ default: ChatList }));
 
 describe("MessageOverview", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     const router = createMemoryRouter([
       { path: "/", element: <MessageOverview /> },
@@ -38,6 +42,7 @@ describe("MessageOverview", () => {
   test("should navigate to /messages", async () => {
     const router = createMemoryRouter([
       { path: "/", element: <MessageOverview /> },
+      { path: "/messages", element: <div></div> },
     ]);
 
     render(<RouterProvider router={router} />);

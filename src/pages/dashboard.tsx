@@ -31,7 +31,7 @@ function Dashboard() {
         </div>
       </div>
 
-      <Transactions withBorder />
+      <Transactions />
     </div>
   );
 }
