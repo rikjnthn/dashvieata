@@ -4,7 +4,7 @@ import ProductInput from "../components/product-input";
 function AddProduct() {
   return (
     <div className="flex h-full gap-2.5 pt-4">
-      <form className="flex w-full">
+      <form onSubmit={(e) => e.preventDefault()} className="flex w-full">
         <ProductImageInput />
 
         <div className="flex w-full flex-col px-4">

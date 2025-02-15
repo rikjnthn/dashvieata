@@ -1,0 +1,32 @@
+export const transactions = [
+  {
+    id: "irufhabsd",
+    buyerName: "James",
+    productName: "Nice T-shirt",
+    productPrice: "20.00",
+    productId: "uxjyebgrf",
+    quantity: "1",
+    totalPrice: "30.00",
+    status: "Payment" as const,
+  },
+  {
+    id: "ituchdbfg",
+    buyerName: "Amanda",
+    productName: "Nice T-shirt",
+    productPrice: "20.00",
+    productId: "uxjyebgrf",
+    quantity: "2",
+    totalPrice: "50.00",
+    status: "Shipping" as const,
+  },
+  {
+    id: "fleovkdjg",
+    buyerName: "Jessica",
+    productName: "Nice T-shirt",
+    productPrice: "20.00",
+    productId: "uxjyebgrf",
+    quantity: "4",
+    totalPrice: "90.00",
+    status: "Arrived" as const,
+  },
+];

@@ -12,6 +12,7 @@ import Product from "./pages/product";
 import AddProduct from "./pages/add-product";
 import Dashboard from "./pages/dashboard";
 import TransactionsPage from "./pages/transactions-page";
+import Transaction from "./pages/transaction";
 import MessagesPage from "./pages/messages";
 import ChatRoom from "./components/chat-room";
 
@@ -26,6 +27,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="product/:productId" element={<Product />} />
             <Route path="add-product" element={<AddProduct />} />
             <Route path="transactions" element={<TransactionsPage />} />
+            <Route path="transaction/:id" element={<Transaction />} />
             <Route path="messages" element={<MessagesPage />}>
               <Route path=":id" element={<ChatRoom />} />
             </Route>

@@ -266,4 +266,36 @@ describe("HeaderNav", () => {
     const notificationOverlay = screen.queryByText("Notification Overlay");
     expect(notificationOverlay).toBeInTheDocument();
   });
+
+  test("should render correctly when navigate to '/transaction/' path", () => {
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/transaction/",
+          element: <HeaderNav />,
+        },
+      ],
+      { initialEntries: ["/transaction/"] },
+    );
+
+    render(<RouterProvider router={router} />);
+
+    const backIcon = screen.queryByText("Back Icon");
+    expect(backIcon).toBeInTheDocument();
+
+    const searchBar = screen.queryByText("Search Bar");
+    expect(searchBar).not.toBeInTheDocument();
+
+    const timeFrame = screen.queryByText("Time Frame");
+    expect(timeFrame).not.toBeInTheDocument();
+
+    const plusIcon = screen.queryByText("Plus Icon");
+    expect(plusIcon).not.toBeInTheDocument();
+
+    const sldiderIcon = screen.queryByText("Slider Icon");
+    expect(sldiderIcon).not.toBeInTheDocument();
+
+    const notificationOverlay = screen.queryByText("Notification Overlay");
+    expect(notificationOverlay).toBeInTheDocument();
+  });
 });
