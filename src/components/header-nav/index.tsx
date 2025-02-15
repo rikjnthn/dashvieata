@@ -14,7 +14,8 @@ const HeaderNav = () => {
     <div className="flex h-17.5 w-full justify-between px-2.5">
       <div className="flex items-center">
         {(pathname === "/add-product" ||
-          pathname.split("/")[1] === "product") && <BackIcon />}
+          pathname.split("/")[1] === "product" ||
+          pathname.split("/")[1] === "transaction") && <BackIcon />}
         {["/products", "/transactions", "/messages"].includes(pathname) && (
           <SearchBar />
         )}
