@@ -6,7 +6,11 @@ import ProductTableHead from ".";
 
 describe("ProductTableHead", () => {
   test("should render correctly", () => {
-    render(<ProductTableHead />);
+    render(
+      <table>
+        <ProductTableHead />
+      </table>,
+    );
 
     const numberCol = screen.getByText("No.");
     expect(numberCol).toBeInTheDocument();

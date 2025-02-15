@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
@@ -8,6 +8,10 @@ window.URL.createObjectURL = vi.fn();
 window.URL.revokeObjectURL = vi.fn();
 
 describe("ProductInput", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     render(<ProductInput label="label" />);
 

@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
@@ -43,6 +43,10 @@ vi.mock("../time-frame", () => ({ default: TimeFrame }));
 vi.mock("../search-bar", () => ({ default: SearchBar }));
 
 describe("HeaderNav", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly when navigate to '/' path", () => {
     render(
       <BrowserRouter>

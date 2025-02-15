@@ -1,4 +1,7 @@
-const InformationSection = ({ label, message }: InformationSectionType) => {
+const InformationSection = ({
+  label,
+  message,
+}: InformationSectionPropsType) => {
   return (
     <div className="p-2.5">
       <div className="mb-2.5 px-4 font-medium">{label}</div>
@@ -11,7 +14,7 @@ const InformationSection = ({ label, message }: InformationSectionType) => {
 
 export default InformationSection;
 
-interface InformationSectionType {
+interface InformationSectionPropsType {
   label: string;
   message: string;
 }

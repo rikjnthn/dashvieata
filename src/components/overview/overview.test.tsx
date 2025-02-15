@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import "@testing-library/jest-dom";
 import Overview from ".";
 
@@ -10,6 +10,10 @@ function DirectArrow() {
 vi.mock("../direct-arrow", () => ({ default: DirectArrow }));
 
 describe("Overview", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     render(
       <Overview

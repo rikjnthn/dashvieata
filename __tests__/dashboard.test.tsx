@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import "@testing-library/jest-dom";
@@ -36,6 +36,10 @@ vi.mock("../src/components/message-overview", () => ({
 vi.mock("../src/components/transactions", () => ({ default: Transactions }));
 
 describe("Dashboard", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     render(<Dashboard />);
 

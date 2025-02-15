@@ -12,15 +12,19 @@ describe("ProductTableRow", () => {
       {
         path: "/",
         element: (
-          <ProductTableRow
-            no="1"
-            id="id"
-            buyerName="buyer name"
-            productName="product name"
-            quantity="10"
-            status="Arrived"
-            totalPrice="210.00"
-          />
+          <table>
+            <tbody>
+              <ProductTableRow
+                no="1"
+                id="id"
+                buyerName="buyer name"
+                productName="product name"
+                quantity="10"
+                status="Arrived"
+                totalPrice="210.00"
+              />
+            </tbody>
+          </table>
         ),
       },
     ]);
@@ -54,18 +58,22 @@ describe("ProductTableRow", () => {
       {
         path: "/",
         element: (
-          <ProductTableRow
-            no="1"
-            id="id"
-            buyerName="buyer name"
-            productName="product name"
-            quantity="10"
-            status="Arrived"
-            totalPrice="210.00"
-          />
+          <table>
+            <tbody>
+              <ProductTableRow
+                no="1"
+                id="id"
+                buyerName="buyer name"
+                productName="product name"
+                quantity="10"
+                status="Arrived"
+                totalPrice="210.00"
+              />
+            </tbody>
+          </table>
         ),
       },
-      { path: "/", element: <div></div> },
+      { path: "/transaction/:id", element: <div></div> },
     ]);
 
     render(<RouterProvider router={router} />);

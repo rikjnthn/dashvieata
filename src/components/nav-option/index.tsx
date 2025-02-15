@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, To } from "react-router";
 import clsx from "clsx";
 
-const NavOption = ({ icon, label, to }: NavOptionType) => {
+const NavOption = ({ icon, label, to }: NavOptionPropsType) => {
   return (
     <NavLink
       className={({ isActive }) =>
@@ -23,7 +23,7 @@ const NavOption = ({ icon, label, to }: NavOptionType) => {
 
 export default NavOption;
 
-interface NavOptionType {
+interface NavOptionPropsType {
   label: string;
   to: To;
   icon: React.ReactElement;

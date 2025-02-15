@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, afterEach, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import userEvent from "@testing-library/user-event";
@@ -7,11 +7,23 @@ import "@testing-library/jest-dom";
 import Transactions from ".";
 
 function TransactionTableHead() {
-  return <div>Transaction Table Head</div>;
+  return (
+    <thead>
+      <tr>
+        <th>Transaction Table Head</th>
+      </tr>
+    </thead>
+  );
 }
 
 function TransactionTableBody() {
-  return <div>Transaction Table Body</div>;
+  return (
+    <tbody>
+      <tr>
+        <td>Transaction Table Body</td>
+      </tr>
+    </tbody>
+  );
 }
 
 function GotoIcon() {
@@ -31,6 +43,10 @@ vi.mock("../go-to-icon", () => ({
 }));
 
 describe("Transactions", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     const router = createMemoryRouter([
       { path: "/", element: <Transactions /> },
@@ -41,7 +57,6 @@ describe("Transactions", () => {
     const transactionsContainer =
       screen.getByText("Transactions").parentElement?.parentElement;
     expect(transactionsContainer).toBeInTheDocument();
-    expect(transactionsContainer).not.toHaveClass("border");
 
     const transaction = screen.getByText("Transactions");
     expect(transaction).toBeInTheDocument();
@@ -56,23 +71,10 @@ describe("Transactions", () => {
     expect(transactionTableBody).toBeInTheDocument();
   });
 
-  test("should render correctly when withBorder true", () => {
-    const router = createMemoryRouter([
-      { path: "/", element: <Transactions withBorder /> },
-    ]);
-
-    render(<RouterProvider router={router} />);
-
-    const transactionsContainer =
-      screen.getByText("Transactions").parentElement?.parentElement;
-    expect(transactionsContainer).toBeInTheDocument();
-
-    expect(transactionsContainer).toHaveClass("border");
-  });
-
   test("should navigate to /transactions", async () => {
     const router = createMemoryRouter([
-      { path: "/", element: <Transactions withBorder /> },
+      { path: "/", element: <Transactions /> },
+      { path: "/transactions", element: <></> },
     ]);
 
     render(<RouterProvider router={router} />);

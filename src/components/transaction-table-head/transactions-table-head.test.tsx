@@ -6,7 +6,11 @@ import TransactionsTableHead from ".";
 
 describe("TransactionsTableHead", () => {
   test("should render correctly", () => {
-    render(<TransactionsTableHead />);
+    render(
+      <table>
+        <TransactionsTableHead />
+      </table>,
+    );
 
     const numberCol = screen.getByText("No.");
     expect(numberCol).toBeInTheDocument();

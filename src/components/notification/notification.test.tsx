@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import "@testing-library/jest-dom";
 import Notification from ".";
 import userEvent from "@testing-library/user-event";
@@ -16,6 +16,10 @@ vi.mock("../chat-icon", () => ({ default: ChatIcon }));
 vi.mock("../close-icon", () => ({ default: CloseIcon }));
 
 describe("Notification", () => {
+  afterAll(() => {
+    vi.resetAllMocks();
+  });
+
   test("should render correctly", () => {
     render(<Notification />);
 

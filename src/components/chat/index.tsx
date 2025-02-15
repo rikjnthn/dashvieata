@@ -1,7 +1,9 @@
-import { useNavigate } from "react-router";
+import clsx from "clsx";
+import { useMatch, useNavigate } from "react-router";
 
-const Chat = ({ message, name, profilePictureSrc }: ChatType) => {
+const Chat = ({ message, name, profilePictureSrc }: ChatPropsType) => {
   const navigate = useNavigate();
+  const isMatch = useMatch("/messages/" + name);
 
   return (
     <div
@@ -9,7 +11,9 @@ const Chat = ({ message, name, profilePictureSrc }: ChatType) => {
         navigate("/messages/" + name);
         e.stopPropagation();
       }}
-      className="flex gap-2.5 px-6.5 py-4"
+      className={clsx("flex gap-2.5 px-6.5 py-4", {
+        "bg-dark-cyan-900 text-white": isMatch,
+      })}
     >
       <div>
         <img
@@ -29,7 +33,7 @@ const Chat = ({ message, name, profilePictureSrc }: ChatType) => {
 
 export default Chat;
 
-interface ChatType {
+interface ChatPropsType {
   profilePictureSrc: string;
   name: string;
   message: string;

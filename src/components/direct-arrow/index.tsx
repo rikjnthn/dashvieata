@@ -1,4 +1,4 @@
-const DirectArrow = ({ title }: DirectArrowType) => {
+const DirectArrow = ({ title }: DirectArrowPropsType) => {
   return (
     <div title={title}>
       <svg
@@ -19,6 +19,6 @@ const DirectArrow = ({ title }: DirectArrowType) => {
 
 export default DirectArrow;
 
-interface DirectArrowType {
+interface DirectArrowPropsType {
   title: string;
 }

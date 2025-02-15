@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 import ArrowIcon from "../arrow";
 
-const Dropdown = ({ defaultValue, options }: DropdownType) => {
+const Dropdown = ({ defaultValue, options }: DropdownPropsType) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   return (
@@ -56,7 +56,7 @@ const Dropdown = ({ defaultValue, options }: DropdownType) => {
 
 export default Dropdown;
 
-interface DropdownType {
+interface DropdownPropsType {
   defaultValue: string;
   options: string[];
 }

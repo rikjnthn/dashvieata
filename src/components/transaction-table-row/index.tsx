@@ -8,7 +8,7 @@ const TransactionTableRow = ({
   quantity,
   status,
   totalPrice,
-}: TransactionsTableRowType) => {
+}: TransactionsTableRowPropsType) => {
   const navigate = useNavigate();
 
   return (
@@ -32,7 +32,7 @@ const TransactionTableRow = ({
 
 export default TransactionTableRow;
 
-interface TransactionsTableRowType {
+interface TransactionsTableRowPropsType {
   no: string;
   id: string;
   buyerName: string;

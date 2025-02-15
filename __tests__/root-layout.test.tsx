@@ -16,7 +16,7 @@ vi.mock("../src/components/navigation", () => ({
 
 describe("RootLayout", () => {
   afterAll(() => {
-    vi.clearAllMocks();
+    vi.resetAllMocks();
   });
 
   test("should render correctly", () => {
