@@ -4,13 +4,27 @@ import { Chart } from "chart.js/auto";
 
 import { dates, revenueData } from "../../data/revenue";
 import { useSetting } from "../../context/setting-context";
+import useTimeFrame from "../../hooks/use-time-frame";
+
+function getIsSmooth(): boolean {
+  if (typeof localStorage === "undefined") return false;
+
+  const isSmooth = localStorage.getItem("is-graph-smooth");
+
+  if (!isSmooth) return false;
+
+  return JSON.parse(isSmooth);
+}
 
 const Graph = () => {
-  const [isSmooth, setIsSmooth] = useState<boolean>(false);
+  const [isSmooth, setIsSmooth] = useState<boolean>(getIsSmooth);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const { fontSize, colorScheme } = useSetting();
+  const { timeFrame } = useTimeFrame();
+
+  const timeFrameInNumber = parseInt(timeFrame.split(" ")[1]);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -25,11 +39,11 @@ const Graph = () => {
     const chart = new Chart(canvasRef.current, {
       type: "line",
       data: {
-        labels: dates.slice(0, 30),
+        labels: dates.slice(0, timeFrameInNumber),
         datasets: [
           {
             label: "revenue",
-            data: revenueData.slice(0, 30),
+            data: revenueData.slice(0, timeFrameInNumber),
             tension: isSmooth ? 0.4 : 0,
           },
         ],
@@ -52,7 +66,17 @@ const Graph = () => {
     });
 
     return () => chart.destroy();
-  }, [isSmooth, fontSize.small, colorScheme]);
+  }, [isSmooth, fontSize.small, colorScheme, timeFrameInNumber]);
+
+  const onSetGraphSmooth = () => {
+    setIsSmooth((prev) => {
+      if (typeof localStorage !== "undefined") {
+        localStorage.setItem("is-graph-smooth", JSON.stringify(!prev));
+      }
+
+      return !prev;
+    });
+  };
 
   return (
     <div className="border-grey-200/50 w-full border p-4 dark:text-white">
@@ -79,7 +103,12 @@ const Graph = () => {
             <div
               title="Smooth line"
               tabIndex={0}
-              onClick={() => setIsSmooth((prev) => !prev)}
+              onClick={onSetGraphSmooth}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  onSetGraphSmooth();
+                }
+              }}
               className={clsx("switch border", {
                 "switch-true border-blue-200 bg-blue-200": isSmooth,
                 "border-grey-700": !isSmooth,

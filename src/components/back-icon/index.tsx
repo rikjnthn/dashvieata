@@ -1,24 +1,9 @@
-import { useLocation, useNavigate } from "react-router";
-
 import { useSetting } from "../../context/setting-context";
 
 const BackIcon = () => {
-  const navigate = useNavigate();
-  const pathname = useLocation().pathname;
   const { colorScheme } = useSetting();
-
-  const pathnameSplit = pathname.split("/");
-
   return (
-    <div
-      onClick={() => {
-        if (pathname === "/add-product" || pathnameSplit[1] === "product")
-          navigate("/products");
-        else if (pathnameSplit[1] === "transaction") navigate("/transactions");
-      }}
-      className="hover:bg-grey-200/50 rounded-full"
-      title="Back"
-    >
+    <div className="hover:bg-grey-200/50 rounded-full" title="Back">
       <svg
         width="40"
         height="40"
