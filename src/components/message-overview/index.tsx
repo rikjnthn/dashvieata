@@ -12,7 +12,7 @@ const MessageOverview = () => {
       onClick={() => navigate("/messages")}
       className="border-grey-200/50 h-full border px-2.5 select-none dark:text-white"
     >
-      <div className="flex justify-between px-4 py-2.5">
+      <div className="flex items-center justify-between px-4 py-2.5">
         <div
           className="font-medium"
           style={{

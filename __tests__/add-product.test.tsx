@@ -1,15 +1,29 @@
 import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import React from "react";
 import "@testing-library/jest-dom";
 
 import AddProduct from "../src/pages/add-product";
 import { SettingProvider } from "../src/context/setting-context";
+import { createMemoryRouter, RouterProvider } from "react-router";
 
 function ProductImageInput() {
   return <div>Product Image Input</div>;
 }
 
+function BackIcon() {
+  return <div>Back Icon</div>;
+}
+
+function NotificationOverlay() {
+  return <div>Notification Overlay</div>;
+}
+
+vi.mock("../src/components/back-icon", () => ({ default: BackIcon }));
+vi.mock("../src/components/notification-overlay", () => ({
+  default: NotificationOverlay,
+}));
 vi.mock("../src/components/product-image-input", () => ({
   default: ProductImageInput,
 }));
@@ -20,11 +34,29 @@ describe("AddProduct", () => {
   });
 
   test("should render correctly", () => {
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/add-product",
+          element: <AddProduct />,
+        },
+      ],
+      {
+        initialEntries: ["/add-product"],
+      },
+    );
+
     render(
       <SettingProvider>
-        <AddProduct />
+        <RouterProvider router={router} />
       </SettingProvider>,
     );
+
+    const backIcon = screen.getByText("Back Icon");
+    expect(backIcon).toBeInTheDocument();
+
+    const notificationOverlay = screen.getByText("Notification Overlay");
+    expect(notificationOverlay).toBeInTheDocument();
 
     const productImageInput = screen.getByText("Product Image Input");
     expect(productImageInput).toBeInTheDocument();
@@ -58,5 +90,31 @@ describe("AddProduct", () => {
 
     const productStockInput = screen.getByPlaceholderText("Product Stock");
     expect(productStockInput).toBeInTheDocument();
+  });
+
+  test("should navigate to /products when user click BackIcon", async () => {
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/add-product",
+          element: <AddProduct />,
+        },
+        { path: "/products", element: <div></div> },
+      ],
+      {
+        initialEntries: ["/add-product"],
+      },
+    );
+
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
+    const backIcon = screen.getByText("Back Icon");
+
+    await userEvent.click(backIcon);
+
+    expect(router.state.location.pathname).toEqual("/products");
   });
 });

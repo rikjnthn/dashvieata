@@ -1,5 +1,6 @@
-import { describe, expect, test } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import React from "react";
 import "@testing-library/jest-dom";
 
@@ -7,7 +8,22 @@ import Transaction from "../src/pages/Transaction";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { SettingProvider } from "../src/context/setting-context";
 
+function BackIcon() {
+  return <div>Back Icon</div>;
+}
+
+function NotificationOverlay() {
+  return <div>Notification Overlay</div>;
+}
+
+vi.mock("../src/components/notification-overlay", () => ({
+  default: NotificationOverlay,
+}));
+vi.mock("../src/components/back-icon", () => ({ default: BackIcon }));
+
 describe("Transaction", () => {
+  afterAll(() => vi.restoreAllMocks());
+
   test("should render correctly", () => {
     const router = createMemoryRouter(
       [
@@ -24,6 +40,12 @@ describe("Transaction", () => {
         <RouterProvider router={router} />
       </SettingProvider>,
     );
+
+    const backIcon = screen.getByText("Back Icon");
+    expect(backIcon).toBeInTheDocument();
+
+    const notificationOverlay = screen.getByText("Notification Overlay");
+    expect(notificationOverlay).toBeInTheDocument();
 
     const transactionIdLabel = screen.getByText("Transaction Id");
     expect(transactionIdLabel).toBeInTheDocument();
@@ -88,5 +110,32 @@ describe("Transaction", () => {
 
     const totalPriceAndShippingCostMessage = screen.getByText(/30.00/);
     expect(totalPriceAndShippingCostMessage).toBeInTheDocument();
+  });
+  test("should navigate to /transactions when user click BackIcon", async () => {
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/:id",
+          element: <Transaction />,
+        },
+        {
+          path: "/transactions",
+          element: <div></div>,
+        },
+      ],
+      { initialEntries: ["/irufhabsd"] },
+    );
+
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
+
+    const backIcon = screen.getByText("Back Icon");
+
+    await userEvent.click(backIcon);
+
+    expect(router.state.location.pathname).toEqual("/transactions");
   });
 });

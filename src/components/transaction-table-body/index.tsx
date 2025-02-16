@@ -14,7 +14,7 @@ const TransactionsTableBody = () => {
       }}
     >
       {transactions.map((data, idx) => (
-        <TransactionTableRow no={`${idx + 1}`} {...data} />
+        <TransactionTableRow key={data.id} no={`${idx + 1}`} {...data} />
       ))}
     </tbody>
   );

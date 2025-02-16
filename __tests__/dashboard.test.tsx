@@ -21,18 +21,27 @@ function Transactions() {
   return <div>Transactions</div>;
 }
 
+function TimeFrame() {
+  return <div>Time Frame</div>;
+}
+
+function NotificationOverlay() {
+  return <div>Notification Overlay</div>;
+}
+
+vi.mock("../src/components/notification-overlay", () => ({
+  default: NotificationOverlay,
+}));
+vi.mock("../src/components/time-frame", () => ({ default: TimeFrame }));
 vi.mock("../src/components/overview", () => ({
   default: Overview,
 }));
-
 vi.mock("../src/components/graph", () => ({
   default: Graph,
 }));
-
 vi.mock("../src/components/message-overview", () => ({
   default: MessageOverview,
 }));
-
 vi.mock("../src/components/transactions", () => ({ default: Transactions }));
 
 describe("Dashboard", () => {
@@ -42,6 +51,12 @@ describe("Dashboard", () => {
 
   test("should render correctly", () => {
     render(<Dashboard />);
+
+    const timeFrame = screen.getByText("Time Frame");
+    expect(timeFrame).toBeInTheDocument();
+
+    const notificationOverlay = screen.getByText("Notification Overlay");
+    expect(notificationOverlay).toBeInTheDocument();
 
     const overviews = screen.getAllByText("Overview");
     overviews.forEach((overview) => expect(overview).toBeInTheDocument());

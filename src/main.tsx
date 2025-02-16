@@ -7,7 +7,6 @@ import "./style/global.css";
 import RootLayout from "./root-layout";
 import SettingsPage from "./pages/settings";
 import Products from "./pages/products";
-import WithHeaderLayout from "./layout/with-header";
 import Product from "./pages/product";
 import AddProduct from "./pages/add-product";
 import Dashboard from "./pages/dashboard";
@@ -26,16 +25,14 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<RootLayout />}>
-          <Route path="/" element={<WithHeaderLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="products" element={<Products />} />
-            <Route path="product/:productId" element={<Product />} />
-            <Route path="add-product" element={<AddProduct />} />
-            <Route path="transactions" element={<TransactionsPage />} />
-            <Route path="transaction/:id" element={<Transaction />} />
-            <Route path="messages" element={<MessagesPage />}>
-              <Route path=":id" element={<ChatRoom />} />
-            </Route>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="products" element={<Products />} />
+          <Route path="product/uxjyebgrf" element={<Product />} />
+          <Route path="add-product" element={<AddProduct />} />
+          <Route path="transactions" element={<TransactionsPage />} />
+          <Route path="transaction/:id" element={<Transaction />} />
+          <Route path="messages" element={<MessagesPage />}>
+            <Route path=":id" element={<ChatRoom />} />
           </Route>
           <Route path="settings" element={<SettingsPage />} />
         </Route>

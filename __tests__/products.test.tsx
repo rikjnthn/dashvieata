@@ -25,6 +25,18 @@ function ProductTableBody() {
   );
 }
 
+function PlusIcon() {
+  return <div>Plus Icon</div>;
+}
+
+function NotificationOverlay() {
+  return <div>Notification Overlay</div>;
+}
+
+vi.mock("../src/components/notification-overlay", () => ({
+  default: NotificationOverlay,
+}));
+vi.mock("../src/components/plus-icon", () => ({ default: PlusIcon }));
 vi.mock("../src/components/product-table-head", () => ({
   default: ProductTableHead,
 }));
@@ -39,6 +51,12 @@ describe("Products", () => {
 
   test("should render correctly", () => {
     render(<Products />);
+
+    const plusIcon = screen.getByText("Plus Icon");
+    expect(plusIcon).toBeInTheDocument();
+
+    const notificationOverlay = screen.getByText("Notification Overlay");
+    expect(notificationOverlay).toBeInTheDocument();
 
     const productTableHead = screen.getByText("Product Table Head");
     expect(productTableHead).toBeInTheDocument();
