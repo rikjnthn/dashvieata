@@ -4,6 +4,7 @@ import React from "react";
 import "@testing-library/jest-dom";
 
 import AddProduct from "../src/pages/add-product";
+import { SettingProvider } from "../src/context/setting-context";
 
 function ProductImageInput() {
   return <div>Product Image Input</div>;
@@ -19,7 +20,11 @@ describe("AddProduct", () => {
   });
 
   test("should render correctly", () => {
-    render(<AddProduct />);
+    render(
+      <SettingProvider>
+        <AddProduct />
+      </SettingProvider>,
+    );
 
     const productImageInput = screen.getByText("Product Image Input");
     expect(productImageInput).toBeInTheDocument();

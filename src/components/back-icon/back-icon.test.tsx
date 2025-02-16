@@ -1,13 +1,18 @@
-import { describe, expect, test } from "vitest";
+import { afterEach, describe, expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import "@testing-library/jest-dom";
 
 import BackIcon from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 describe("BackIcon", () => {
+  afterEach(() => localStorage.clear());
+
   test("should render correctly", () => {
+    localStorage.setItem("color-scheme", "Light");
+
     const router = createMemoryRouter([
       {
         path: "/",
@@ -15,14 +20,42 @@ describe("BackIcon", () => {
       },
     ]);
 
-    render(<RouterProvider router={router} />);
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
 
     const backIcon = screen.getByTitle("Back");
     expect(backIcon).toBeInTheDocument();
 
     expect(backIcon.querySelector("svg")).toHaveAttribute("width", "40");
     expect(backIcon.querySelector("svg")).toHaveAttribute("height", "40");
-    expect(backIcon.querySelector("path")).toHaveAttribute("fill", "black");
+    expect(backIcon.querySelector("path")).toHaveAttribute("fill", "#000000");
+  });
+
+  test("should render correctly dark mode", () => {
+    localStorage.setItem("color-scheme", "Dark");
+
+    const router = createMemoryRouter([
+      {
+        path: "/",
+        element: <BackIcon />,
+      },
+    ]);
+
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
+
+    const backIcon = screen.getByTitle("Back");
+    expect(backIcon).toBeInTheDocument();
+
+    expect(backIcon.querySelector("svg")).toHaveAttribute("width", "40");
+    expect(backIcon.querySelector("svg")).toHaveAttribute("height", "40");
+    expect(backIcon.querySelector("path")).toHaveAttribute("fill", "#ffffff");
   });
 
   test("should navigate to /products if clicked from /add-product", async () => {
@@ -43,7 +76,11 @@ describe("BackIcon", () => {
       },
     );
 
-    render(<RouterProvider router={router} />);
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
 
     const backIcon = screen.getByTitle("Back");
 
@@ -70,7 +107,11 @@ describe("BackIcon", () => {
       },
     );
 
-    render(<RouterProvider router={router} />);
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
 
     const backIcon = screen.getByTitle("Back");
 
@@ -97,7 +138,11 @@ describe("BackIcon", () => {
       },
     );
 
-    render(<RouterProvider router={router} />);
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
 
     const backIcon = screen.getByTitle("Back");
 

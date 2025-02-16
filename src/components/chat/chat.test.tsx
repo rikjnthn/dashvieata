@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import Chat from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 describe("Chat", () => {
   test("should render correctly", () => {
@@ -15,7 +16,11 @@ describe("Chat", () => {
       },
     ]);
 
-    render(<RouterProvider router={router} />);
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
 
     const img = screen.getByAltText("name");
     expect(img).toBeInTheDocument();
@@ -39,7 +44,11 @@ describe("Chat", () => {
       },
     ]);
 
-    render(<RouterProvider router={router} />);
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
 
     const chatContainer = screen.getByAltText("name").parentElement;
     expect(chatContainer).toBeInTheDocument();

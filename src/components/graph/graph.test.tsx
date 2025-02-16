@@ -4,10 +4,15 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import Graph from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 describe("Graph", () => {
   test("should render correctly", () => {
-    render(<Graph />);
+    render(
+      <SettingProvider>
+        <Graph />
+      </SettingProvider>,
+    );
 
     const revenue = screen.getByText("Revenue");
     expect(revenue).toBeInTheDocument();
@@ -20,7 +25,11 @@ describe("Graph", () => {
   });
 
   test("should handle user click", async () => {
-    render(<Graph />);
+    render(
+      <SettingProvider>
+        <Graph />
+      </SettingProvider>,
+    );
 
     const smoothLineSwitch = screen.getByTitle("Smooth line");
     expect(smoothLineSwitch).toHaveClass("border-grey-700");

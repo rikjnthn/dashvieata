@@ -1,21 +1,24 @@
 import { describe, expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { createMemoryRouter, RouterProvider } from "react-router";
 import "@testing-library/jest-dom";
 
 import NavOption from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 describe("NavOption", () => {
   test("should render correctly", () => {
+    const router = createMemoryRouter([
+      {
+        path: "/",
+        element: <NavOption icon={<div>Icon</div>} label="Link" to={"/"} />,
+      },
+    ]);
+
     render(
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={<NavOption icon={<div>Icon</div>} label="Link" to={"/"} />}
-          ></Route>
-        </Routes>
-      </BrowserRouter>,
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
     );
 
     const navLink = screen.getByRole("link");
@@ -29,37 +32,41 @@ describe("NavOption", () => {
   });
 
   test("should include right class when active or inactive", () => {
+    const router = createMemoryRouter([
+      {
+        path: "/",
+        element: <NavOption icon={<div>Icon</div>} label="Link" to={"/"} />,
+      },
+    ]);
+
     render(
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={<NavOption icon={<div>Icon</div>} label="Link" to={"/"} />}
-          />
-        </Routes>
-      </BrowserRouter>,
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
     );
 
     const navLink = screen.getByRole("link");
     expect(navLink).toHaveClass("stroke-black text-black");
   });
 
-  test("should include right class when inactive", () => {
-    render(
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <NavOption
-                icon={<div>Icon</div>}
-                label="Link"
-                to={"/different-path"}
-              />
-            }
+  test("should be base style when inactive", () => {
+    const router = createMemoryRouter([
+      {
+        path: "/",
+        element: (
+          <NavOption
+            icon={<div>Icon</div>}
+            label="Link"
+            to={"/different-path"}
           />
-        </Routes>
-      </BrowserRouter>,
+        ),
+      },
+    ]);
+
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
     );
 
     const navLink = screen.getByRole("link");

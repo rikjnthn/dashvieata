@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import ChatList from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 function Chat() {
   return <div>Chat</div>;
@@ -16,7 +17,11 @@ describe("ChatList", () => {
   });
 
   test("should render correctly", () => {
-    render(<ChatList />);
+    render(
+      <SettingProvider>
+        <ChatList />
+      </SettingProvider>,
+    );
 
     const chats = screen.getAllByText("Chat");
     chats.forEach((chat) => expect(chat).toBeInTheDocument());

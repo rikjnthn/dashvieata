@@ -5,6 +5,7 @@ import "@testing-library/jest-dom";
 
 import Transaction from "../src/pages/Transaction";
 import { createMemoryRouter, RouterProvider } from "react-router";
+import { SettingProvider } from "../src/context/setting-context";
 
 describe("Transaction", () => {
   test("should render correctly", () => {
@@ -18,7 +19,11 @@ describe("Transaction", () => {
       { initialEntries: ["/irufhabsd"] },
     );
 
-    render(<RouterProvider router={router} />);
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
 
     const transactionIdLabel = screen.getByText("Transaction Id");
     expect(transactionIdLabel).toBeInTheDocument();

@@ -4,6 +4,7 @@ import React from "react";
 import "@testing-library/jest-dom";
 
 import Product from "../src/pages/product";
+import { SettingProvider } from "../src/context/setting-context";
 
 function ProductDetail() {
   return <div>Product Detail</div>;
@@ -19,7 +20,11 @@ describe("Product", () => {
   });
 
   test("should render correctly", () => {
-    render(<Product />);
+    render(
+      <SettingProvider>
+        <Product />
+      </SettingProvider>,
+    );
 
     const productDetail = screen.getByText("Product Detail");
     expect(productDetail).toBeInTheDocument();

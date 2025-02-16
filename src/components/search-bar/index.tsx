@@ -1,11 +1,23 @@
+import React from "react";
+
+import { useSetting } from "../../context/setting-context";
 import SearchIcon from "../search-icon";
 
 const SearchBar = () => {
+  const { fontSize } = useSetting();
+
   return (
-    <form className="inset-ring-grey-200-50 flex max-w-94.5 rounded-full py-1.25 pr-4 pl-6.5 inset-ring">
+    <form className="inset-ring-grey-200/50 dark:inset-ring-grey-400/50 flex max-w-94.5 rounded-full py-1.25 pr-4 pl-6.5 inset-ring">
       <input
-        className="text-grey-400 placeholder:text-grey-400 outline-0"
+        className="input-dynamic-font-size placeholder:text-grey-400 text-black outline-0 dark:text-white"
         placeholder="Search..."
+        style={
+          {
+            fontSize: fontSize.bigger,
+            lineHeight: "1.56",
+            "--font-size": fontSize.bigger,
+          } as React.CSSProperties
+        }
       />
       <SearchIcon />
     </form>

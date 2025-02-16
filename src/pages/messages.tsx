@@ -6,8 +6,8 @@ function MessagesPage() {
   const id = useParams().id;
 
   return (
-    <div className="border-grey-200-50 mt-7.5 flex h-full overflow-hidden rounded-md border">
-      <div className="border-grey-200-50 w-full max-w-100 border-r py-0.5">
+    <div className="border-grey-200/50 mt-7.5 flex h-full overflow-hidden rounded-md border">
+      <div className="border-grey-200/50 w-full max-w-100 border-r py-0.5">
         <ChatList />
       </div>
 

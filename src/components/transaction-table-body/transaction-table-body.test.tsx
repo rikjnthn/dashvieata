@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import TransactionTableBody from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 function TransactionTableRow() {
   return (
@@ -21,9 +22,11 @@ describe("TransactionTableBody", () => {
 
   test("should render correctly", () => {
     render(
-      <table>
-        <TransactionTableBody />
-      </table>,
+      <SettingProvider>
+        <table>
+          <TransactionTableBody />
+        </table>
+      </SettingProvider>,
     );
 
     const transactionTableRows = screen.getAllByText("Transaction Table Row");

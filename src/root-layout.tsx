@@ -1,12 +1,15 @@
 import { Outlet } from "react-router";
 
 import Navigation from "./components/navigation";
+import { SettingProvider } from "./context/setting-context";
 
 function Layout() {
   return (
     <div className="flex h-full w-full">
-      <Navigation />
-      <Outlet />
+      <SettingProvider>
+        <Navigation />
+        <Outlet />
+      </SettingProvider>
     </div>
   );
 }

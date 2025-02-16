@@ -5,10 +5,15 @@ import "@testing-library/jest-dom";
 
 import TimeFrame from ".";
 import { TIMEFRAMEOPTIONS } from "../../constant/setting";
+import { SettingProvider } from "../../context/setting-context";
 
 describe("TimeFrame", () => {
   test("should render correctly", () => {
-    const { container } = render(<TimeFrame />);
+    const { container } = render(
+      <SettingProvider>
+        <TimeFrame />
+      </SettingProvider>,
+    );
 
     const selectedOptionsContainer = container
       .querySelector("div")
@@ -44,7 +49,11 @@ describe("TimeFrame", () => {
   });
 
   test("should open font size setting overlay", async () => {
-    const { container } = render(<TimeFrame />);
+    const { container } = render(
+      <SettingProvider>
+        <TimeFrame />
+      </SettingProvider>,
+    );
 
     const selectedOptionsContainer = container
       .querySelector("div")
@@ -66,8 +75,11 @@ describe("TimeFrame", () => {
   });
 
   test("should close font size setting overlay when click outside of options container", async () => {
-    const { container } = render(<TimeFrame />);
-
+    const { container } = render(
+      <SettingProvider>
+        <TimeFrame />
+      </SettingProvider>,
+    );
     const selectedOptionsContainer = container
       .querySelector("div")
       ?.querySelector("div");

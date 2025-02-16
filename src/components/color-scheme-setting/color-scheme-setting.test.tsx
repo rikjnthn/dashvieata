@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import ColorSchemeSetting from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 function Dropdown() {
   return <div>Dropdown</div>;
@@ -18,7 +19,11 @@ describe("ColorSchemeSetting", () => {
   });
 
   test("should render correctly", () => {
-    render(<ColorSchemeSetting />);
+    render(
+      <SettingProvider>
+        <ColorSchemeSetting />
+      </SettingProvider>,
+    );
 
     const label = screen.getByText("Color Scheme");
     expect(label).toBeInTheDocument();

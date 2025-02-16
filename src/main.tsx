@@ -16,6 +16,11 @@ import Transaction from "./pages/transaction";
 import MessagesPage from "./pages/messages";
 import ChatRoom from "./components/chat-room";
 
+document.documentElement.classList.toggle(
+  "dark",
+  localStorage.getItem("color-scheme") === "Dark",
+);
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>

@@ -1,9 +1,12 @@
 import { useEffect, useId, useRef } from "react";
 
+import { useSetting } from "../../context/setting-context";
+
 const ProductImageInput = () => {
   const id = useId();
 
   const imgRef = useRef<HTMLImageElement>(null);
+  const { fontSize } = useSetting();
 
   useEffect(() => {
     const imgEl = imgRef.current;
@@ -18,10 +21,23 @@ const ProductImageInput = () => {
       <label
         htmlFor={id}
         className="grid w-full place-items-center text-white opacity-0 select-none hover:bg-black/50 hover:opacity-100"
+        style={{
+          fontSize: fontSize.bigger,
+          lineHeight: "1.56",
+        }}
       >
         Add image
       </label>
-      <img className="hidden" ref={imgRef} src="#" alt="Product image" />
+      <img
+        className="hidden"
+        ref={imgRef}
+        src="#"
+        alt="Product image"
+        style={{
+          fontSize: fontSize.normal,
+          lineHeight: "1.56",
+        }}
+      />
       <input
         onInput={(e) => {
           const file = e.currentTarget.files?.[0];

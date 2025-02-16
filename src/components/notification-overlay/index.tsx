@@ -13,21 +13,21 @@ const NotificationOverlay = () => {
       <div className="relative">
         <div
           onClick={() => setIsOpenOverlay(true)}
-          className="hover:bg-grey-200-50 rounded-full"
+          className="hover:bg-grey-200/50 rounded-full"
         >
           <BellIcon />
         </div>
 
         <div
           className={clsx(
-            "border-grey-200-50 absolute right-0 z-10 w-100 rounded-md border bg-white",
+            "border-grey-200/50 dark:bg-grey-900 absolute right-0 z-10 w-100 rounded-md border bg-white",
             { hidden: !isOpenOverlay },
           )}
         >
           <div className="flex justify-end stroke-black p-2.5">
             <div
               onClick={() => setIsOpenOverlay(false)}
-              className="hover:bg-grey-200-50 rounded-full"
+              className="hover:bg-grey-200/50 rounded-full dark:stroke-white"
             >
               <CloseIcon title="Close" />
             </div>

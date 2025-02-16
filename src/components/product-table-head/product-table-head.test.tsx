@@ -3,13 +3,16 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import ProductTableHead from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 describe("ProductTableHead", () => {
   test("should render correctly", () => {
     render(
-      <table>
-        <ProductTableHead />
-      </table>,
+      <SettingProvider>
+        <table>
+          <ProductTableHead />
+        </table>
+      </SettingProvider>,
     );
 
     const numberCol = screen.getByText("No.");

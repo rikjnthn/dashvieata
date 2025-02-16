@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import FontSizeSetting from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 function Dropdown() {
   return <div>Dropdown</div>;
@@ -18,7 +19,11 @@ describe("FontSizeSetting", () => {
   });
 
   test("should render correctly", () => {
-    render(<FontSizeSetting />);
+    render(
+      <SettingProvider>
+        <FontSizeSetting />
+      </SettingProvider>,
+    );
 
     const label = screen.getByText("Font Size");
     expect(label).toBeInTheDocument();

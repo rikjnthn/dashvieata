@@ -1,8 +1,17 @@
+import { useSetting } from "../../context/setting-context";
 import ProductTableRow from "../product-table-row";
 
 const ProductTableBody = () => {
+  const { fontSize } = useSetting();
+
   return (
-    <tbody className="product-table-body">
+    <tbody
+      className="product-table-body dark:text-white"
+      style={{
+        fontSize: fontSize.normal,
+        lineHeight: "1.56",
+      }}
+    >
       <ProductTableRow
         number="1"
         imageSrc="/nice-t-shirt.jpg"

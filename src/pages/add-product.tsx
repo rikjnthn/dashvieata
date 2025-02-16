@@ -1,7 +1,10 @@
 import ProductImageInput from "../components/product-image-input";
 import ProductInput from "../components/product-input";
+import { useSetting } from "../context/setting-context";
 
 function AddProduct() {
+  const { fontSize } = useSetting();
+
   return (
     <div className="flex h-full gap-2.5 pt-4">
       <form onSubmit={(e) => e.preventDefault()} className="flex w-full">
@@ -18,6 +21,10 @@ function AddProduct() {
           <button
             className="active:bg-dark-cyan-600 mx-2.5 mt-10 ml-auto rounded-md bg-blue-300 p-4 text-white hover:bg-blue-200"
             type="submit"
+            style={{
+              fontSize: fontSize.bigger,
+              lineHeight: "1.56",
+            }}
           >
             Add Product
           </button>

@@ -3,6 +3,7 @@ import { afterAll, describe, expect, test, vi } from "vitest";
 import "@testing-library/jest-dom";
 
 import MessageInput from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 function MessageList({ content }: { content: string }) {
   return <div>{content}</div>;
@@ -18,7 +19,11 @@ describe("MessageInput", () => {
   });
 
   test("should render correctly", () => {
-    render(<MessageInput messages={[{ content: "message", sender: true }]} />);
+    render(
+      <SettingProvider>
+        <MessageInput messages={[{ content: "message", sender: true }]} />
+      </SettingProvider>,
+    );
 
     const message = screen.getByText("message");
     expect(message).toBeInTheDocument();

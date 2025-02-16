@@ -1,9 +1,10 @@
 import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
 import "@testing-library/jest-dom";
+
 import NotificationOverlay from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 function BellIcon() {
   return <div>Bell Icon</div>;
@@ -27,7 +28,11 @@ describe("NotificationOverlay", () => {
   });
 
   test("should render correctly", () => {
-    render(<NotificationOverlay />);
+    render(
+      <SettingProvider>
+        <NotificationOverlay />
+      </SettingProvider>,
+    );
 
     const notificationOverlayContainer =
       screen.getByText("Close Icon").parentElement?.parentElement
@@ -44,7 +49,11 @@ describe("NotificationOverlay", () => {
   });
 
   test("should open and close notificationOverlay", async () => {
-    render(<NotificationOverlay />);
+    render(
+      <SettingProvider>
+        <NotificationOverlay />
+      </SettingProvider>,
+    );
 
     const bellIcon = screen.getByText("Bell Icon");
 
@@ -65,7 +74,11 @@ describe("NotificationOverlay", () => {
   });
 
   test("should close overlay when clicking outsize notification overlay", async () => {
-    render(<NotificationOverlay />);
+    render(
+      <SettingProvider>
+        <NotificationOverlay />
+      </SettingProvider>,
+    );
 
     const bellIcon = screen.getByText("Bell Icon");
 

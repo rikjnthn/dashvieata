@@ -4,6 +4,7 @@ import React from "react";
 import "@testing-library/jest-dom";
 
 import Setting from "../src/pages/settings";
+import { SettingProvider } from "../src/context/setting-context";
 
 function FontSizeSetting() {
   return <div>Font Size Setting</div>;
@@ -26,7 +27,11 @@ describe("Settings Page", () => {
   });
 
   test("should render correctly", () => {
-    render(<Setting />);
+    render(
+      <SettingProvider>
+        <Setting />
+      </SettingProvider>,
+    );
 
     const appearanceLabel = screen.getByText("Appearance");
     expect(appearanceLabel).toBeInTheDocument();

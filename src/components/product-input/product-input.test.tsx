@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import ProductInput from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 window.URL.createObjectURL = vi.fn();
 window.URL.revokeObjectURL = vi.fn();
@@ -13,7 +14,11 @@ describe("ProductInput", () => {
   });
 
   test("should render correctly", () => {
-    render(<ProductInput label="label" />);
+    render(
+      <SettingProvider>
+        <ProductInput label="label" />
+      </SettingProvider>,
+    );
 
     const label = screen.getByText("label");
     expect(label).toBeInTheDocument();

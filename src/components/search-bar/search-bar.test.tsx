@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import SearchBar from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 function SearchIcon() {
   return <div>Search Icon</div>;
@@ -16,7 +17,11 @@ describe("SearchBar", () => {
   });
 
   test("should render correctly", () => {
-    render(<SearchBar />);
+    render(
+      <SettingProvider>
+        <SearchBar />
+      </SettingProvider>,
+    );
 
     const input = screen.getByPlaceholderText("Search...");
     expect(input).toBeInTheDocument();
