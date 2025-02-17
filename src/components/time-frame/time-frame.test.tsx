@@ -1,14 +1,21 @@
-import { describe, expect, test } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import TimeFrame from ".";
 import { TIMEFRAMEOPTIONS } from "../../constant/setting";
+import { SettingProvider } from "../../context/setting-context";
 
 describe("TimeFrame", () => {
+  afterEach(() => vi.resetAllMocks());
+
   test("should render correctly", () => {
-    const { container } = render(<TimeFrame />);
+    const { container } = render(
+      <SettingProvider>
+        <TimeFrame setTimeFrame={vi.fn()} timeFrame="Last 30 days" />
+      </SettingProvider>,
+    );
 
     const selectedOptionsContainer = container
       .querySelector("div")
@@ -43,12 +50,15 @@ describe("TimeFrame", () => {
     expect(overlay).toHaveClass("hidden");
   });
 
-  test("should open font size setting overlay", async () => {
-    const { container } = render(<TimeFrame />);
+  test("should open time frame overlay", async () => {
+    const { container } = render(
+      <SettingProvider>
+        <TimeFrame setTimeFrame={vi.fn()} timeFrame="Last 30 days" />
+      </SettingProvider>,
+    );
 
-    const selectedOptionsContainer = container
-      .querySelector("div")
-      ?.querySelector("div");
+    const selectedOptionsContainer =
+      screen.getAllByText("Last 30 days")[0].parentElement;
 
     await userEvent.click(selectedOptionsContainer!);
 
@@ -60,23 +70,25 @@ describe("TimeFrame", () => {
     expect(optionsContainer).toBeInTheDocument();
     expect(optionsContainer).not.toHaveClass("hidden");
 
-    const overlay = container.lastChild;
-    expect(overlay).toBeInTheDocument();
-    expect(overlay).not.toHaveClass("hidden");
+    const bgOverlay = container.lastChild;
+    expect(bgOverlay).toBeInTheDocument();
+    expect(bgOverlay).not.toHaveClass("hidden");
   });
 
-  test("should close font size setting overlay when click outside of options container", async () => {
-    const { container } = render(<TimeFrame />);
-
-    const selectedOptionsContainer = container
-      .querySelector("div")
-      ?.querySelector("div");
+  test("should close time frame overlay when click outside of options container", async () => {
+    const { container } = render(
+      <SettingProvider>
+        <TimeFrame setTimeFrame={vi.fn()} timeFrame="Last 30 days" />
+      </SettingProvider>,
+    );
+    const selectedOptionsContainer =
+      screen.getAllByText("Last 30 days")[0].parentElement;
 
     await userEvent.click(selectedOptionsContainer!);
 
-    const overlay = container.lastChild as Element;
+    const bgOverlay = container.lastChild as Element;
 
-    await userEvent.click(overlay);
+    await userEvent.click(bgOverlay);
 
     expect(selectedOptionsContainer).not.toHaveClass("rounded-b-none");
 
@@ -85,6 +97,63 @@ describe("TimeFrame", () => {
       ?.querySelector("div")?.nextSibling;
     expect(optionsContainer).toHaveClass("hidden");
 
-    expect(overlay).toHaveClass("hidden");
+    expect(bgOverlay).toHaveClass("hidden");
+  });
+
+  test("should close time frame overlay when click outside of options container", async () => {
+    const { container } = render(
+      <SettingProvider>
+        <TimeFrame setTimeFrame={vi.fn()} timeFrame="Last 30 days" />
+      </SettingProvider>,
+    );
+    const selectedOptionsContainer =
+      screen.getAllByText("Last 30 days")[0].parentElement;
+    await userEvent.click(selectedOptionsContainer!);
+
+    const bgOverlay = container.lastChild as Element;
+
+    await userEvent.click(bgOverlay);
+
+    expect(selectedOptionsContainer).not.toHaveClass("rounded-b-none");
+
+    const optionsContainer = container
+      .querySelector("div")
+      ?.querySelector("div")?.nextSibling;
+    expect(optionsContainer).toHaveClass("hidden");
+
+    expect(bgOverlay).toHaveClass("hidden");
+  });
+
+  test("should called setTimeFrame and closed time frame overlay when user click option", async () => {
+    const setTimeFrameMock = vi.fn();
+
+    const { container } = render(
+      <SettingProvider>
+        <TimeFrame setTimeFrame={setTimeFrameMock} timeFrame="Last 30 days" />
+      </SettingProvider>,
+    );
+    const selectedOptionsContainer =
+      screen.getAllByText("Last 30 days")[0].parentElement;
+
+    const option = screen.getByText("Last 60 days");
+    const bgOverlay = container.lastChild as Element;
+
+    await userEvent.click(selectedOptionsContainer!);
+
+    expect(selectedOptionsContainer).toHaveClass("rounded-b-none");
+
+    await userEvent.click(option);
+
+    expect(setTimeFrameMock).toHaveBeenCalled();
+    expect(setTimeFrameMock).toHaveBeenCalledWith("Last 60 days");
+
+    expect(selectedOptionsContainer).not.toHaveClass("rounded-b-none");
+
+    const optionsContainer = container
+      .querySelector("div")
+      ?.querySelector("div")?.nextSibling;
+    expect(optionsContainer).toHaveClass("hidden");
+
+    expect(bgOverlay).toHaveClass("hidden");
   });
 });

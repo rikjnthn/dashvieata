@@ -1,8 +1,10 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { afterAll, describe, expect, test, vi } from "vitest";
-import "@testing-library/jest-dom";
-import Notification from ".";
 import userEvent from "@testing-library/user-event";
+import "@testing-library/jest-dom";
+
+import Notification from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 function ChatIcon() {
   return <div>Chat Icon</div>;
@@ -21,7 +23,11 @@ describe("Notification", () => {
   });
 
   test("should render correctly", () => {
-    render(<Notification />);
+    render(
+      <SettingProvider>
+        <Notification />
+      </SettingProvider>,
+    );
 
     const notificationContainer =
       screen.getByText("Messages").parentElement?.parentElement;
@@ -42,7 +48,11 @@ describe("Notification", () => {
   });
 
   test("should remove notification", async () => {
-    render(<Notification />);
+    render(
+      <SettingProvider>
+        <Notification />
+      </SettingProvider>,
+    );
 
     const notificationContainer =
       screen.getByText("Messages").parentElement?.parentElement;

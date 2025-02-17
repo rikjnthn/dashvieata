@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import ProductImageInput from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 window.URL.createObjectURL = vi.fn();
 window.URL.revokeObjectURL = vi.fn();
@@ -14,7 +15,11 @@ describe("ProductImageInput", () => {
   });
 
   test("should render correctly", () => {
-    const { container } = render(<ProductImageInput />);
+    const { container } = render(
+      <SettingProvider>
+        <ProductImageInput />
+      </SettingProvider>,
+    );
 
     const label = screen.getByText("Add image");
     expect(label).toBeInTheDocument();
@@ -28,7 +33,11 @@ describe("ProductImageInput", () => {
   });
 
   test("should add image preview when user upload image", async () => {
-    render(<ProductImageInput />);
+    render(
+      <SettingProvider>
+        <ProductImageInput />
+      </SettingProvider>,
+    );
 
     const img = screen.getByAltText("Product image");
     expect(img).toHaveClass("hidden");

@@ -3,10 +3,15 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import ProductDetail from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 describe("ProductDetail", () => {
   test("should render correctly", () => {
-    render(<ProductDetail />);
+    render(
+      <SettingProvider>
+        <ProductDetail />
+      </SettingProvider>,
+    );
 
     const productIdLabel = screen.getByText("Product Id");
     expect(productIdLabel).toBeInTheDocument();

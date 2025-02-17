@@ -1,6 +1,16 @@
+import { useSetting } from "../../context/setting-context";
+
 const ProductTableHead = () => {
+  const { fontSize } = useSetting();
+
   return (
-    <thead className="product-table-head">
+    <thead
+      className="product-table-head dark:text-white"
+      style={{
+        fontSize: fontSize.bigger,
+        lineHeight: "1.56",
+      }}
+    >
       <tr>
         <th scope="col">No.</th>
         <th scope="col">Image</th>

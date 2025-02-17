@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import MessageInput from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 window.URL.createObjectURL = vi.fn();
 window.URL.revokeObjectURL = vi.fn();
@@ -14,7 +15,11 @@ describe("MessageInput", () => {
   });
 
   test("should render correctly", () => {
-    render(<MessageInput setMessages={vi.fn()} />);
+    render(
+      <SettingProvider>
+        <MessageInput setMessages={vi.fn()} />
+      </SettingProvider>,
+    );
 
     const text = screen.getByPlaceholderText("Message...");
     expect(text).toBeInTheDocument();
@@ -43,7 +48,11 @@ describe("MessageInput", () => {
   test("should send text message", async () => {
     const setMessagesMock = vi.fn();
 
-    render(<MessageInput setMessages={setMessagesMock} />);
+    render(
+      <SettingProvider>
+        <MessageInput setMessages={setMessagesMock} />
+      </SettingProvider>,
+    );
 
     const text = screen.getByPlaceholderText("Message...");
     const submitButton = screen.getByRole("button");
@@ -61,7 +70,11 @@ describe("MessageInput", () => {
 
     const setMessagesMock = vi.fn();
 
-    render(<MessageInput setMessages={setMessagesMock} />);
+    render(
+      <SettingProvider>
+        <MessageInput setMessages={setMessagesMock} />
+      </SettingProvider>,
+    );
 
     const submitButton = screen.getByRole("button");
     const imagePreview = screen.getByAltText("Image preview");

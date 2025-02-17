@@ -1,11 +1,15 @@
 import { useState } from "react";
+import SliderIcon from "../slider-icon";
 import clsx from "clsx";
-
-import BellIcon from "../bell-icon";
 import CloseIcon from "../close-icon";
-import Notification from "../notification";
+import Dropdown from "../dropdown";
+import { STATUS } from "../../constant/setting";
+import { TransactionStatusType } from "../../interface";
 
-const NotificationOverlay = () => {
+const SliderOverlay = ({
+  setTransactionStatus,
+  transactionStatus,
+}: SliderOverlayPropsType) => {
   const [isOpenOverlay, setIsOpenOverlay] = useState<boolean>(false);
 
   return (
@@ -15,7 +19,7 @@ const NotificationOverlay = () => {
           onClick={() => setIsOpenOverlay(true)}
           className="hover:bg-grey-200/50 rounded-full"
         >
-          <BellIcon />
+          <SliderIcon />
         </div>
 
         <div
@@ -33,8 +37,19 @@ const NotificationOverlay = () => {
             </div>
           </div>
 
-          <div className="max-h-100 overflow-x-hidden overflow-y-auto">
-            <Notification />
+          <div className="max-h-100 cursor-pointer dark:text-white">
+            <div className="flex items-center justify-between p-5">
+              <div>Status</div>
+              <div>
+                <Dropdown
+                  defaultValue={transactionStatus}
+                  options={STATUS}
+                  onOptionClick={(option) => {
+                    setTransactionStatus(option as TransactionStatusType);
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -49,4 +64,9 @@ const NotificationOverlay = () => {
   );
 };
 
-export default NotificationOverlay;
+export default SliderOverlay;
+
+interface SliderOverlayPropsType {
+  setTransactionStatus: (option: TransactionStatusType) => void;
+  transactionStatus: TransactionStatusType;
+}

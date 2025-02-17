@@ -1,9 +1,11 @@
 import clsx from "clsx";
 import { useMatch, useNavigate } from "react-router";
+import { useSetting } from "../../context/setting-context";
 
 const Chat = ({ message, name, profilePictureSrc }: ChatPropsType) => {
   const navigate = useNavigate();
   const isMatch = useMatch("/messages/" + name);
+  const { fontSize } = useSetting();
 
   return (
     <div
@@ -20,12 +22,23 @@ const Chat = ({ message, name, profilePictureSrc }: ChatPropsType) => {
           className="h-12.5 w-12.5 rounded-full object-cover object-center"
           src={profilePictureSrc}
           alt={name}
+          style={{
+            fontSize: fontSize.normal,
+            lineHeight: "1.56",
+          }}
         />
       </div>
 
       <div>
         <div className="font-medium">{name}</div>
-        <div className="text-sm">{message}</div>
+        <div
+          style={{
+            fontSize: fontSize.normal,
+            lineHeight: "1.56",
+          }}
+        >
+          {message}
+        </div>
       </div>
     </div>
   );

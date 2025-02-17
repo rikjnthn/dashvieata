@@ -3,10 +3,15 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import ArrowIcon from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 describe("ArrowIcon", () => {
   test("should render correctly", () => {
-    const { rerender } = render(<ArrowIcon title="Arrow" size="md" />);
+    const { rerender } = render(
+      <SettingProvider>
+        <ArrowIcon title="Arrow" size="md" />
+      </SettingProvider>,
+    );
 
     const arrowIconMd = screen.getByTitle("Arrow");
     expect(arrowIconMd).toBeInTheDocument();
@@ -18,7 +23,11 @@ describe("ArrowIcon", () => {
       "2",
     );
 
-    rerender(<ArrowIcon title="Arrow" size="sm" />);
+    rerender(
+      <SettingProvider>
+        <ArrowIcon title="Arrow" size="sm" />
+      </SettingProvider>,
+    );
 
     const arrowIconSm = screen.getByTitle("Arrow");
     expect(arrowIconSm).toBeInTheDocument();

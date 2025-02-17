@@ -1,13 +1,21 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import ProductTableBody from ".";
+import { SettingProvider } from "../../context/setting-context";
 
-function ProductTableRow() {
+function ProductTableRow({
+  productId,
+  productName,
+}: {
+  productId: string;
+  productName: string;
+}) {
   return (
     <tr>
-      <td>Product Table Row</td>
+      <td>{productId}</td>
+      <td>{productName}</td>
     </tr>
   );
 }
@@ -15,14 +23,49 @@ function ProductTableRow() {
 vi.mock("../product-table-row", () => ({ default: ProductTableRow }));
 
 describe("ProductTableBody", () => {
+  afterAll(() => {
+    vi.restoreAllMocks();
+  });
+
   test("should render correctly", () => {
     render(
-      <table>
-        <ProductTableBody />
-      </table>,
+      <SettingProvider>
+        <table>
+          <ProductTableBody search="" />
+        </table>
+      </SettingProvider>,
     );
 
-    const productTableRow = screen.getByText("Product Table Row");
-    expect(productTableRow).toBeInTheDocument();
+    const productId = screen.getByText("uxjyebgrf");
+    expect(productId).toBeInTheDocument();
+
+    const productName = screen.getByText("Nice T-shirt");
+    expect(productName).toBeInTheDocument();
+  });
+
+  test("should render search products only", () => {
+    render(
+      <SettingProvider>
+        <table>
+          <ProductTableBody search="Nice T-shirt" />
+        </table>
+      </SettingProvider>,
+    );
+
+    const productsName = screen.getAllByText(/Nice T-shirt/);
+    productsName.forEach((el) => expect(el).toBeInTheDocument());
+  });
+
+  test("should render empty table if search product not found", () => {
+    const { container } = render(
+      <SettingProvider>
+        <table>
+          <ProductTableBody search="Not-found" />
+        </table>
+      </SettingProvider>,
+    );
+
+    const products = container.querySelector("tbody")?.childNodes;
+    expect(products).toHaveLength(0);
   });
 });

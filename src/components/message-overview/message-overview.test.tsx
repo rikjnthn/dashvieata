@@ -1,10 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { afterAll, describe, expect, test, vi } from "vitest";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import MessageOverview from ".";
-import userEvent from "@testing-library/user-event";
+import { SettingProvider } from "../../context/setting-context";
 
 function GotoIcon() {
   return <div>Goto Icon</div>;
@@ -27,7 +28,11 @@ describe("MessageOverview", () => {
       { path: "/", element: <MessageOverview /> },
     ]);
 
-    render(<RouterProvider router={router} />);
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
 
     const messages = screen.getByText("Messages");
     expect(messages).toBeInTheDocument();
@@ -45,7 +50,11 @@ describe("MessageOverview", () => {
       { path: "/messages", element: <div></div> },
     ]);
 
-    render(<RouterProvider router={router} />);
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
 
     const messageOverview = screen.getByText("Chat List").parentElement;
 

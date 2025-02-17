@@ -1,16 +1,19 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import Dropdown from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 const options = ["option 1", "option 2"];
 
 describe("Dropdown", () => {
   test("should render correctly", () => {
     const { container } = render(
-      <Dropdown defaultValue="default" options={options} />,
+      <SettingProvider>
+        <Dropdown defaultValue="default" options={options} />
+      </SettingProvider>,
     );
 
     const selectedOptionsContainer = container
@@ -45,7 +48,9 @@ describe("Dropdown", () => {
 
   test("should open font size setting overlay", async () => {
     const { container } = render(
-      <Dropdown defaultValue="default" options={options} />,
+      <SettingProvider>
+        <Dropdown defaultValue="default" options={options} />
+      </SettingProvider>,
     );
 
     const selectedOptionsContainer = container
@@ -63,13 +68,16 @@ describe("Dropdown", () => {
     expect(optionsContainer).not.toHaveClass("hidden");
 
     const overlay = container.lastChild;
+    screen.debug(container);
     expect(overlay).toBeInTheDocument();
     expect(overlay).not.toHaveClass("hidden");
   });
 
   test("should close font size setting overlay when click outside of options container", async () => {
     const { container } = render(
-      <Dropdown defaultValue="default" options={options} />,
+      <SettingProvider>
+        <Dropdown defaultValue="default" options={options} />
+      </SettingProvider>,
     );
 
     const selectedOptionsContainer = container
@@ -90,5 +98,28 @@ describe("Dropdown", () => {
     expect(optionsContainer).toHaveClass("hidden");
 
     expect(overlay).toHaveClass("hidden");
+  });
+
+  test("should call onOptionClick if user click option", async () => {
+    const onOptionClickMock = vi.fn();
+
+    render(
+      <SettingProvider>
+        <Dropdown
+          defaultValue="default"
+          options={options}
+          onOptionClick={onOptionClickMock}
+        />
+      </SettingProvider>,
+    );
+
+    const option = screen.getByText("option 1");
+
+    await userEvent.click(option);
+
+    expect(onOptionClickMock).toBeCalled();
+    expect(onOptionClickMock).toBeCalledWith("option 1");
+
+    vi.resetAllMocks();
   });
 });

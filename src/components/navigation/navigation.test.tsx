@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import Navigation from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 function NavOption() {
   return <div>Nav Option</div>;
@@ -18,7 +19,11 @@ describe("Navigation", () => {
   });
 
   test("should render correctly", () => {
-    render(<Navigation />);
+    render(
+      <SettingProvider>
+        <Navigation />
+      </SettingProvider>,
+    );
 
     const navLink = screen.getByRole("img").parentElement?.parentElement;
     expect(navLink).toBeInTheDocument();

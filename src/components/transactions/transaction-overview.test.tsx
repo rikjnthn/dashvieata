@@ -1,10 +1,11 @@
-import { afterAll, afterEach, describe, expect, test, vi } from "vitest";
+import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import Transactions from ".";
+import { SettingProvider } from "../../context/setting-context";
 
 function TransactionTableHead() {
   return (
@@ -52,7 +53,11 @@ describe("Transactions", () => {
       { path: "/", element: <Transactions /> },
     ]);
 
-    render(<RouterProvider router={router} />);
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
 
     const transactionsContainer =
       screen.getByText("Transactions").parentElement?.parentElement;
@@ -77,7 +82,11 @@ describe("Transactions", () => {
       { path: "/transactions", element: <></> },
     ]);
 
-    render(<RouterProvider router={router} />);
+    render(
+      <SettingProvider>
+        <RouterProvider router={router} />
+      </SettingProvider>,
+    );
 
     const transactionsContainer =
       screen.getByText("Transactions").parentElement?.parentElement;
