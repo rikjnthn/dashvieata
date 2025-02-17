@@ -13,10 +13,10 @@ const TimeFrame = ({ setTimeFrame, timeFrame }: TimeFramePropsType) => {
 
   return (
     <>
-      <div className="relative w-50 select-none dark:text-white">
+      <div className="relative w-fit gap-2.5 select-none dark:text-white">
         <div
           className={clsx(
-            "border-grey-200/50 flex h-fit w-full items-center rounded-md border px-4",
+            "border-grey-200/50 flex h-fit w-full items-center gap-5 rounded-md border px-4",
             isDropdownOpen && "rounded-b-none",
           )}
           onClick={(e) => {

@@ -10,7 +10,7 @@ const MessageOverview = () => {
   return (
     <div
       onClick={() => navigate("/messages")}
-      className="border-grey-200/50 h-full border px-2.5 select-none dark:text-white"
+      className="border-grey-200/50 border px-2.5 select-none max-md:max-h-100 lg:h-full dark:text-white"
     >
       <div className="flex items-center justify-between px-4 py-2.5">
         <div

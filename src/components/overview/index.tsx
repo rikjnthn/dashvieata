@@ -10,7 +10,7 @@ const Overview = ({ label, timeFrame, value, growth }: OverviewPropsType) => {
   const isGrowing = growth > 0;
 
   return (
-    <div className="border-grey-200/50 w-full max-w-100 rounded-md border p-4 dark:text-white">
+    <div className="border-grey-200/50 w-full rounded-md border p-4 dark:text-white">
       <div
         className="font-medium"
         style={{

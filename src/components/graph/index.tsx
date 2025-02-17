@@ -58,6 +58,7 @@ const Graph = ({ timeFrame }: GraphPropsType) => {
             labels: fontOptions,
           },
         },
+        maintainAspectRatio: false,
       },
     });
 
@@ -114,7 +115,7 @@ const Graph = ({ timeFrame }: GraphPropsType) => {
         </div>
       </div>
 
-      <div className="h-full w-full">
+      <div className="relative h-full max-h-78 w-full lg:w-[40vw]">
         <canvas ref={canvasRef} />
       </div>
     </div>
