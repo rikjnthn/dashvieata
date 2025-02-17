@@ -37,7 +37,7 @@ function Dashboard() {
       </HeaderNav>
 
       <div className="flex h-full flex-col gap-2.5 overflow-x-clip overflow-y-scroll">
-        <div className="flex h-full gap-2.5 pt-5.5 max-lg:flex-col">
+        <div className="flex gap-2.5 pt-5.5 max-lg:flex-col">
           <div className="flex w-full flex-col gap-2.5">
             <div className="flex w-full gap-2.5 max-md:flex-col md:gap-4">
               <Overview
