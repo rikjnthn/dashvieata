@@ -6,14 +6,11 @@ export const revenueData = [
   480, 920, 1480, 600, 980, 1480, 1520, 700, 1900, 720, 1240, 1660, 1360, 1060,
   540, 840, 1540, 1080, 1180, 380, 1000, 380, 1700, 900, 1720, 1900, 560, 1340,
   1780, 980, 820, 1080, 700, 700,
-].reverse();
+];
 
-export const dates = new Array(90)
-  .fill(0)
-  .map((_, idx) => {
-    const date = new Date();
-    return new Date(
-      date.setDate(new Date().getDate() - idx),
-    ).toLocaleDateString();
-  })
-  .reverse();
+export const dates = new Array(90).fill(0).map((_, idx) => {
+  const date = new Date();
+  return new Date(
+    date.setDate(new Date().getDate() - idx),
+  ).toLocaleDateString();
+});

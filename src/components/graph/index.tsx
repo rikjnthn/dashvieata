@@ -35,11 +35,11 @@ const Graph = ({ timeFrame }: GraphPropsType) => {
     const chart = new Chart(canvasRef.current, {
       type: "line",
       data: {
-        labels: dates.slice(0, timeFrame),
+        labels: dates.slice(0, timeFrame).reverse(),
         datasets: [
           {
             label: "revenue",
-            data: revenueData.slice(0, timeFrame),
+            data: revenueData.slice(0, timeFrame).reverse(),
             tension: isSmooth ? 0.4 : 0,
           },
         ],
