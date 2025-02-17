@@ -24,7 +24,7 @@ function Transaction() {
         <NotificationOverlay />
       </HeaderNav>
 
-      <div className="flex">
+      <div className="flex max-md:flex-col">
         <div className="flex w-full">
           <div className="w-full">
             <InformationSection

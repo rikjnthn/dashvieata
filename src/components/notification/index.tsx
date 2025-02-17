@@ -29,7 +29,7 @@ const Notification = () => {
     <div
       ref={notificationRef}
       className={clsx(
-        "border-grey-200/50 hover:bg-grey-200/50 notification-transition dark:hover:bg-grey-800 flex w-full items-center gap-5 border-y p-2.5",
+        "border-grey-200/50 hover:bg-grey-200/50 notification-transition dark:hover:bg-grey-800 flex w-full items-center gap-2.5 border-y p-2.5 sm:gap-5",
         { "-translate-x-full": isRemoved },
       )}
     >
@@ -37,7 +37,7 @@ const Notification = () => {
         <ChatIcon />
       </div>
 
-      <div className="dark:text-white">
+      <div className="w-full dark:text-white">
         <div
           className="mb-1.25 font-medium"
           style={{
@@ -48,6 +48,7 @@ const Notification = () => {
           Messages
         </div>
         <div
+          className="w-38 truncate text-ellipsis"
           style={{
             fontSize: fontSize.normal,
             lineHeight: "1.56",

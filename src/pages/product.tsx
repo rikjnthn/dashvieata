@@ -9,7 +9,7 @@ function Product() {
   const { fontSize } = useSetting();
 
   return (
-    <div className="dark:bg-grey-900 flex w-full min-w-0 flex-col gap-2.5 px-4 py-12">
+    <div className="dark:bg-grey-900 flex w-full min-w-0 flex-col gap-2.5 py-12 sm:px-4">
       <HeaderNav>
         <Link to="/products">
           <BackIcon />
@@ -17,10 +17,10 @@ function Product() {
         <NotificationOverlay />
       </HeaderNav>
 
-      <div className="flex py-4">
-        <div className="w-2/3 max-w-100 self-start">
+      <div className="flex py-4 max-sm:flex-col">
+        <div className="flex w-full self-start sm:w-2/3 sm:max-w-100">
           <img
-            className="max-h-100 w-full rounded-md object-contain"
+            className="mx-auto max-h-100 w-fit rounded-md object-contain"
             src="/nice-t-shirt.jpg"
             alt="Nice T-shirt"
             style={{
