@@ -4,7 +4,6 @@ import { Chart } from "chart.js/auto";
 
 import { dates, revenueData } from "../../data/revenue";
 import { useSetting } from "../../context/setting-context";
-import useTimeFrame from "../../hooks/use-time-frame";
 
 function getIsSmooth(): boolean {
   if (typeof localStorage === "undefined") return false;
@@ -16,15 +15,12 @@ function getIsSmooth(): boolean {
   return JSON.parse(isSmooth);
 }
 
-const Graph = () => {
+const Graph = ({ timeFrame }: GraphPropsType) => {
   const [isSmooth, setIsSmooth] = useState<boolean>(getIsSmooth);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const { fontSize, colorScheme } = useSetting();
-  const { timeFrame } = useTimeFrame();
-
-  const timeFrameInNumber = parseInt(timeFrame.split(" ")[1]);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -39,11 +35,11 @@ const Graph = () => {
     const chart = new Chart(canvasRef.current, {
       type: "line",
       data: {
-        labels: dates.slice(0, timeFrameInNumber),
+        labels: dates.slice(0, timeFrame),
         datasets: [
           {
             label: "revenue",
-            data: revenueData.slice(0, timeFrameInNumber),
+            data: revenueData.slice(0, timeFrame),
             tension: isSmooth ? 0.4 : 0,
           },
         ],
@@ -66,7 +62,7 @@ const Graph = () => {
     });
 
     return () => chart.destroy();
-  }, [isSmooth, fontSize.small, colorScheme, timeFrameInNumber]);
+  }, [isSmooth, fontSize.small, colorScheme, timeFrame]);
 
   const onSetGraphSmooth = () => {
     setIsSmooth((prev) => {
@@ -126,3 +122,7 @@ const Graph = () => {
 };
 
 export default Graph;
+
+interface GraphPropsType {
+  timeFrame: number;
+}

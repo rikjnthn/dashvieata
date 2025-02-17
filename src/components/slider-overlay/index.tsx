@@ -4,13 +4,13 @@ import clsx from "clsx";
 import CloseIcon from "../close-icon";
 import Dropdown from "../dropdown";
 import { STATUS } from "../../constant/setting";
-import useTransactionStatus from "../../hooks/use-transaction-status";
 import { TransactionStatusType } from "../../interface";
 
-const SliderOverlay = () => {
+const SliderOverlay = ({
+  setTransactionStatus,
+  transactionStatus,
+}: SliderOverlayPropsType) => {
   const [isOpenOverlay, setIsOpenOverlay] = useState<boolean>(false);
-
-  const { setTransactionStatus, transactionStatus } = useTransactionStatus();
 
   return (
     <>
@@ -65,3 +65,8 @@ const SliderOverlay = () => {
 };
 
 export default SliderOverlay;
+
+interface SliderOverlayPropsType {
+  setTransactionStatus: (option: TransactionStatusType) => void;
+  transactionStatus: TransactionStatusType;
+}

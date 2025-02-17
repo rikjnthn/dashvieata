@@ -4,8 +4,9 @@ import clsx from "clsx";
 import { TIMEFRAMEOPTIONS } from "../../constant/setting";
 import ArrowIcon from "../arrow";
 import { useSetting } from "../../context/setting-context";
+import { TimeFrameType } from "../../interface";
 
-const TimeFrame = () => {
+const TimeFrame = ({ setTimeFrame, timeFrame }: TimeFramePropsType) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   const { fontSize } = useSetting();
@@ -34,7 +35,7 @@ const TimeFrame = () => {
               lineHeight: "1.56",
             }}
           >
-            Last 30 days
+            {timeFrame}
           </div>
           <div>
             <ArrowIcon title="Open" size="sm" />
@@ -55,7 +56,11 @@ const TimeFrame = () => {
             <option
               key={optionValue}
               className="border-grey-200/50 w-full border-b p-4"
-              onClick={() => setIsDropdownOpen(false)}
+              onClick={() => {
+                setIsDropdownOpen(false);
+
+                setTimeFrame(optionValue);
+              }}
               value={optionValue}
             >
               {optionValue}
@@ -75,3 +80,8 @@ const TimeFrame = () => {
 };
 
 export default TimeFrame;
+
+interface TimeFramePropsType {
+  timeFrame: TimeFrameType;
+  setTimeFrame: (option: TimeFrameType) => void;
+}

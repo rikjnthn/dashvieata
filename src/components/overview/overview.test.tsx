@@ -22,7 +22,7 @@ describe("Overview", () => {
           label="label"
           timeFrame="Last 30 days"
           value="100"
-          growthPercentage="+20%"
+          growth={0.1}
         />
       </SettingProvider>,
     );
@@ -36,7 +36,7 @@ describe("Overview", () => {
     const timeFrame = screen.getByText("Last 30 days");
     expect(timeFrame).toBeInTheDocument();
 
-    const growthPercentage = screen.getByText("+20%");
+    const growthPercentage = screen.getByText("+10%");
     expect(growthPercentage).toBeInTheDocument();
   });
 });

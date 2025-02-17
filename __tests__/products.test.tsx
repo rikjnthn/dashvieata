@@ -33,6 +33,10 @@ function NotificationOverlay() {
   return <div>Notification Overlay</div>;
 }
 
+function SearchBar() {
+  return <div>Search Bar</div>;
+}
+
 vi.mock("../src/components/notification-overlay", () => ({
   default: NotificationOverlay,
 }));
@@ -42,6 +46,9 @@ vi.mock("../src/components/product-table-head", () => ({
 }));
 vi.mock("../src/components/product-table-body", () => ({
   default: ProductTableBody,
+}));
+vi.mock("../src/components/search-bar", () => ({
+  default: SearchBar,
 }));
 
 describe("Products", () => {

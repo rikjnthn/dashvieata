@@ -10,7 +10,7 @@ describe("Graph", () => {
   test("should render correctly", () => {
     render(
       <SettingProvider>
-        <Graph />
+        <Graph timeFrame={30} />
       </SettingProvider>,
     );
 
@@ -24,10 +24,10 @@ describe("Graph", () => {
     expect(smoothLineSwitch).toBeInTheDocument();
   });
 
-  test("should handle user click", async () => {
+  test("should handle user click and set localStorage 'is-graph-smooth'", async () => {
     render(
       <SettingProvider>
-        <Graph />
+        <Graph timeFrame={30} />
       </SettingProvider>,
     );
 
@@ -39,5 +39,38 @@ describe("Graph", () => {
     expect(smoothLineSwitch).toHaveClass(
       "switch-true border-blue-200 bg-blue-200",
     );
+
+    expect(localStorage.getItem("is-graph-smooth")).toEqual("true");
+
+    localStorage.clear();
+  });
+
+  test("should handle user 'enter' and set localStorage 'is-graph-smooth'", async () => {
+    render(
+      <SettingProvider>
+        <Graph timeFrame={30} />
+      </SettingProvider>,
+    );
+
+    const smoothLineSwitch = screen.getByTitle("Smooth line");
+    expect(smoothLineSwitch).toHaveClass("border-grey-700");
+
+    await userEvent.keyboard("{Tab}{Enter}");
+
+    expect(smoothLineSwitch).toHaveClass(
+      "switch-true border-blue-200 bg-blue-200",
+    );
+
+    expect(localStorage.getItem("is-graph-smooth")).toEqual("true");
+
+    await userEvent.keyboard("{Enter}");
+
+    expect(smoothLineSwitch).not.toHaveClass(
+      "switch-true border-blue-200 bg-blue-200",
+    );
+
+    expect(localStorage.getItem("is-graph-smooth")).toEqual("false");
+
+    localStorage.clear();
   });
 });

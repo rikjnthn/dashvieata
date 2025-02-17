@@ -1,5 +1,6 @@
 import { afterAll, describe, expect, test, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 import SearchBar from ".";
@@ -19,7 +20,7 @@ describe("SearchBar", () => {
   test("should render correctly", () => {
     render(
       <SettingProvider>
-        <SearchBar />
+        <SearchBar setSearch={vi.fn()} />
       </SettingProvider>,
     );
 
@@ -28,5 +29,22 @@ describe("SearchBar", () => {
 
     const searchIcon = screen.getByText("Search Icon");
     expect(searchIcon).toBeInTheDocument();
+  });
+
+  test("should called setSearch when user type to input", async () => {
+    const setSearchMock = vi.fn();
+    render(
+      <SettingProvider>
+        <SearchBar setSearch={setSearchMock} />
+      </SettingProvider>,
+    );
+
+    const input = screen.getByPlaceholderText("Search...");
+    expect(input).toBeInTheDocument();
+
+    await userEvent.type(input, "here-some-input");
+
+    expect(setSearchMock).toHaveBeenCalled();
+    expect(setSearchMock).toHaveBeenCalledWith("here-some-input");
   });
 });

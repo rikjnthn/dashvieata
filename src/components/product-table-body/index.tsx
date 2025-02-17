@@ -1,7 +1,18 @@
 import { useSetting } from "../../context/setting-context";
 import ProductTableRow from "../product-table-row";
 
-const ProductTableBody = () => {
+const products = [
+  {
+    imageSrc: "/nice-t-shirt.jpg",
+    imageAlt: "Nice T-shirt",
+    price: "20.00",
+    productId: "uxjyebgrf",
+    productName: "Nice T-shirt",
+    stock: "10",
+  },
+];
+
+const ProductTableBody = ({ search }: ProductTableBodyPropsType) => {
   const { fontSize } = useSetting();
 
   return (
@@ -12,17 +23,30 @@ const ProductTableBody = () => {
         lineHeight: "1.56",
       }}
     >
-      <ProductTableRow
-        number="1"
-        imageSrc="/nice-t-shirt.jpg"
-        imageAlt="Nice T-shirt"
-        price="20.00"
-        productId="uxjyebgrf"
-        productName="Nice T-shirt"
-        stock="10"
-      />
+      {products
+        .filter((product) => {
+          const normalizeSearch = search.toLowerCase();
+
+          return (
+            product.productId.toLowerCase().startsWith(normalizeSearch) ||
+            product.productName.toLowerCase().startsWith(normalizeSearch)
+          );
+        })
+        .map((product, idx) => {
+          return (
+            <ProductTableRow
+              key={product.productId}
+              number={`${idx + 1}`}
+              {...product}
+            />
+          );
+        })}
     </tbody>
   );
 };
 
 export default ProductTableBody;
+
+interface ProductTableBodyPropsType {
+  search: string;
+}

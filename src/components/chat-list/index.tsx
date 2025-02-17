@@ -1,7 +1,20 @@
 import { useSetting } from "../../context/setting-context";
 import Chat from "../chat";
 
-const ChatList = () => {
+const chatContacts = [
+  {
+    profilePictureSrc: "/user1.jpg",
+    name: "Amanda",
+    message: "You: What product you had like to asked?",
+  },
+  {
+    profilePictureSrc: "/user2.jpg",
+    name: "Jessica",
+    message: "Thank you! Your t-shirt is wonderfull",
+  },
+];
+
+const ChatList = ({ search }: ChatListProps) => {
   const { fontSize } = useSetting();
 
   return (
@@ -12,18 +25,21 @@ const ChatList = () => {
         lineHeight: "1.56",
       }}
     >
-      <Chat
-        profilePictureSrc="/user1.jpg"
-        name="Amanda"
-        message="You: What product you had like to asked?"
-      />
-      <Chat
-        profilePictureSrc="/user2.jpg"
-        name="Jessica"
-        message="Thank you! Your t-shirt is wonderfull"
-      />
+      {chatContacts
+        .filter((contact) => {
+          return contact.name
+            .toLowerCase()
+            .startsWith(search?.toLowerCase() ?? "");
+        })
+        .map((contact) => {
+          return <Chat key={contact.name} {...contact} />;
+        })}
     </div>
   );
 };
 
 export default ChatList;
+
+interface ChatListProps {
+  search?: string;
+}

@@ -80,6 +80,6 @@ export default Dropdown;
 
 interface DropdownPropsType {
   defaultValue: string;
-  options: string[];
+  options: Readonly<string[]>;
   onOptionClick?: (option: string) => void;
 }

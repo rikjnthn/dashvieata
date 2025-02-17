@@ -37,7 +37,7 @@ const Transactions = () => {
       <div className="flex h-full w-full p-2.5">
         <table className="flex w-full flex-col gap-2.5 overflow-x-auto">
           <TransactionsTableHead />
-          <TransactionsTableBody />
+          <TransactionsTableBody status="All" />
         </table>
       </div>
     </div>
