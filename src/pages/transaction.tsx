@@ -5,6 +5,7 @@ import InformationSection from "../components/information-section";
 import BackIcon from "../components/back-icon";
 import NotificationOverlay from "../components/notification-overlay";
 import HeaderNav from "../components/header-nav";
+import NotFound from "./not-found";
 
 function Transaction() {
   const id = useParams().id;
@@ -13,7 +14,7 @@ function Transaction() {
 
   const transaction = transactions.find((v) => v.id === id);
 
-  if (!transaction) return;
+  if (!transaction) return <NotFound />;
 
   return (
     <div className="dark:bg-grey-900 flex w-full min-w-0 flex-col gap-2.5 px-4 py-12">

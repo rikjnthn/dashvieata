@@ -37,8 +37,10 @@ const ChatRoom = () => {
   const id = useParams().id as "Amanda" | "Jessica";
 
   const [messages, setMessages] = useState<MessageType[]>(
-    id ? chatMessages[id] : [],
+    chatMessages[id] ?? [],
   );
+
+  if (!(id === "Amanda" || id === "Jessica")) return;
 
   return (
     <div className="dark:bg-grey-900 top-0 left-0 flex h-full w-full flex-col gap-2.5 bg-white px-7.5 py-8.5 max-md:absolute max-md:pt-4">

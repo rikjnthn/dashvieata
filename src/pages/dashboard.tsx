@@ -1,5 +1,6 @@
+import React, { Suspense } from "react";
+
 import useTimeFrame from "../hooks/use-time-frame";
-import Graph from "../components/graph";
 import HeaderNav from "../components/header-nav";
 import MessageOverview from "../components/message-overview";
 import NotificationOverlay from "../components/notification-overlay";
@@ -7,8 +8,11 @@ import Overview from "../components/overview";
 import TimeFrame from "../components/time-frame";
 import Transactions from "../components/transactions";
 import { revenueData } from "../data/revenue";
+import Loading from "../components/loading";
 
 const currencyFormat = new Intl.NumberFormat("en-us");
+
+const Graph = React.lazy(() => import("../components/graph"));
 
 function Dashboard() {
   const { setTimeFrame, timeFrame } = useTimeFrame();
@@ -54,7 +58,9 @@ function Dashboard() {
               />
             </div>
 
-            <Graph timeFrame={timeFrameInNumber} />
+            <Suspense fallback={<Loading />}>
+              <Graph timeFrame={timeFrameInNumber} />
+            </Suspense>
           </div>
 
           <div className="w-full">
