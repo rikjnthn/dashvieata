@@ -1,5 +1,5 @@
 import React from "react";
-import { STATUS, TIMEFRAMEOPTIONS } from "../constant/setting";
+import { FONTSIZES, STATUS, TIMEFRAMEOPTIONS } from "../constant/setting";
 
 export type SetStateType<T> = React.Dispatch<React.SetStateAction<T>>;
 
@@ -15,3 +15,5 @@ export type GetArrayElementType<T extends readonly unknown[]> =
 export type TimeFrameType = GetArrayElementType<typeof TIMEFRAMEOPTIONS>;
 
 export type TransactionStatusType = GetArrayElementType<typeof STATUS>;
+
+export type NormalFontSizeType = GetArrayElementType<typeof FONTSIZES>;

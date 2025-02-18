@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 
-import { SetStateType } from "../interface";
+import { NormalFontSizeType, SetStateType } from "../interface";
 import { COLORSCHEME, FONTSIZES } from "../constant/setting";
 import fontSizeCalc from "../helper/font-size-calc";
 
@@ -43,7 +43,8 @@ function getDefaultFontSize(): FontSizeType {
   const fontSize = localStorage.getItem("font-size");
 
   if (!fontSize) return defaultFontSize;
-  if (!FONTSIZES.includes(fontSize)) return defaultFontSize;
+  if (!FONTSIZES.includes(fontSize as NormalFontSizeType))
+    return defaultFontSize;
 
   return {
     largest: fontSizeCalc(fontSize, 16),
@@ -60,7 +61,7 @@ function getDefaultColorScheme(): ColorSchemeType {
   const colorScheme = localStorage.getItem("color-scheme");
 
   if (!colorScheme) return "Light";
-  if (!COLORSCHEME.includes(colorScheme)) return "Light";
+  if (!COLORSCHEME.includes(colorScheme as ColorSchemeType)) return "Light";
 
   return colorScheme as ColorSchemeType;
 }
