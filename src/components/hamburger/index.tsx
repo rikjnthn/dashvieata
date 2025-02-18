@@ -1,6 +1,10 @@
 const Hamburger = ({ onClick }: HamburgerPropsType) => {
   return (
-    <div onClick={onClick} title="Hamburger">
+    <div
+      onClick={onClick}
+      className="hover:bg-grey-200/50 rounded-full"
+      title="Hamburger"
+    >
       <svg
         className="fill-inherit"
         width="40"

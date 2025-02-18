@@ -9,7 +9,7 @@ function Product() {
   const { fontSize } = useSetting();
 
   return (
-    <div className="dark:bg-grey-900 flex w-full min-w-0 flex-col gap-2.5 py-12 sm:px-4">
+    <div className="dark:bg-grey-900 flex h-full w-full min-w-0 flex-col gap-2.5 py-12 sm:px-4">
       <HeaderNav>
         <Link to="/products">
           <BackIcon />
