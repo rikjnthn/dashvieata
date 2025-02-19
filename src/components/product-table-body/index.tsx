@@ -3,7 +3,7 @@ import ProductTableRow from "../product-table-row";
 
 const products = [
   {
-    imageSrc: "/nice-t-shirt.jpg",
+    imageSrc: new URL("/nice-t-shirt.jpg", import.meta.url).href,
     imageAlt: "Nice T-shirt",
     price: "20.00",
     productId: "uxjyebgrf",

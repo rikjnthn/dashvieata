@@ -21,7 +21,7 @@ function Product() {
         <div className="flex w-full self-start sm:w-2/3 sm:max-w-100">
           <img
             className="mx-auto max-h-100 w-fit rounded-md object-contain"
-            src="/nice-t-shirt.jpg"
+            src={new URL("/nice-t-shirt.jpg", import.meta.url).href}
             alt="Nice T-shirt"
             style={{
               fontSize: fontSize.biggest,

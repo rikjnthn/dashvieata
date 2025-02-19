@@ -23,7 +23,7 @@ document.documentElement.classList.toggle(
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/dashvieata">
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route path="/" element={<Dashboard />} />
