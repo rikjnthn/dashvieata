@@ -14,6 +14,7 @@ import TransactionsPage from "./pages/transactions-page";
 import Transaction from "./pages/transaction";
 import MessagesPage from "./pages/messages";
 import ChatRoom from "./components/chat-room";
+import NotFound from "./pages/not-found";
 
 document.documentElement.classList.toggle(
   "dark",
@@ -22,7 +23,7 @@ document.documentElement.classList.toggle(
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/dashvieata">
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route path="/" element={<Dashboard />} />
@@ -36,6 +37,7 @@ createRoot(document.getElementById("root")!).render(
           </Route>
           <Route path="settings" element={<SettingsPage />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

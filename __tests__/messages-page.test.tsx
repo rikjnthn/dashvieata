@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 
-import Messages from "../src/pages/messages";
+import MessagesPage from "../src/pages/messages";
 
 function ChatList() {
   return <div>Chat List</div>;
@@ -30,7 +30,9 @@ describe("Messages Page", () => {
   });
 
   test("should render correctly", () => {
-    const router = createMemoryRouter([{ path: "/", element: <Messages /> }]);
+    const router = createMemoryRouter([
+      { path: "/", element: <MessagesPage /> },
+    ]);
 
     render(<RouterProvider router={router} />);
 
@@ -47,7 +49,7 @@ describe("Messages Page", () => {
   test("should render Outlet Component correctly", () => {
     const router = createMemoryRouter(
       [
-        { path: "/", element: <Messages /> },
+        { path: "/:param", element: <MessagesPage /> },
         {
           path: "/nested-component-path",
           element: <div>Nested Component</div>,

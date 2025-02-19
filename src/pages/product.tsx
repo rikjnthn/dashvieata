@@ -9,7 +9,7 @@ function Product() {
   const { fontSize } = useSetting();
 
   return (
-    <div className="dark:bg-grey-900 flex w-full min-w-0 flex-col gap-2.5 py-12 sm:px-4">
+    <div className="dark:bg-grey-900 flex h-full w-full min-w-0 flex-col gap-2.5 py-12 sm:px-4">
       <HeaderNav>
         <Link to="/products">
           <BackIcon />
@@ -21,7 +21,7 @@ function Product() {
         <div className="flex w-full self-start sm:w-2/3 sm:max-w-100">
           <img
             className="mx-auto max-h-100 w-fit rounded-md object-contain"
-            src="/nice-t-shirt.jpg"
+            src={new URL("/nice-t-shirt.jpg", import.meta.url).href}
             alt="Nice T-shirt"
             style={{
               fontSize: fontSize.biggest,
